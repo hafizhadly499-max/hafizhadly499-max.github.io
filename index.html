@@ -1,336 +1,111 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adly Irsyad Hafizh — Network & Systems Log</title>
-    
-    <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-                        mono: ['"JetBrains Mono"', 'monospace'],
-                    },
-                    colors: {
-                        surface: {
-                            DEFAULT: '#0b0f17',
-                            card: '#121824',
-                            border: '#1e293b',
-                            hover: '#1a2333'
-                        },
-                        brand: {
-                            blue: '#2563eb',
-                            cyan: '#0891b2',
-                            text: '#f1f5f9',
-                            muted: '#94a3b8'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-
-    <style>
-        body {
-            background-color: #0b0f17;
-            color: #f1f5f9;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* Border halus & bayangan natural tanpa efek AI yang berlebihan */
-        .card-custom {
-            background-color: #121824;
-            border: 1px solid #1e293b;
-            transition: border-color 0.2s ease, transform 0.2s ease;
-        }
-
-        .card-custom:hover {
-            border-color: #334155;
-        }
-
-        /* Subtle grid background */
-        .bg-grid {
-            background-size: 32px 32px;
-            background-image: 
-                linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0b0f17;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #1e293b;
-            border-radius: 3px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #334155;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hafiz - Biodata</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+body{
+  min-height:100vh;
+  background: linear-gradient(135deg, #4a0e1e 0%, #7a1a2f 50%, #d8a0a8 100%);
+  display:flex;justify-content:center;align-items:center;padding:20px;
+}
+.card{
+  width:100%;max-width:380px;
+  background:#fff8ee;
+  border-radius:24px;
+  overflow:hidden;
+  border:3px solid #fff8ee;
+  box-shadow:0 20px 40px rgba(0,0,0,.3);
+}
+.top{
+  background:#7a0f2a;
+  padding:35px 20px 30px;
+  text-align:center;
+  position:relative;
+}
+.avatar{
+  width:110px;height:110px;
+  background:#fff3d9;
+  border-radius:50%;
+  margin:0 auto 15px;
+  display:flex;justify-content:center;align-items:center;
+  font-size:50px;
+  border:4px solid #fff8ee;
+}
+.top h1{color:white;font-size:26px;letter-spacing:1px;font-weight:700}
+.top p.sub{color:#f0c6c6;font-size:13px;margin-top:4px}
+.badge{
+  display:inline-block;
+  background:#2b0a12;color:white;
+  padding:4px 14px;border-radius:20px;
+  font-size:11px;font-weight:600;margin-top:10px;
+}
+.cake{
+  position:absolute;
+  bottom:-16px;left:50%;transform:translateX(-50%);
+  background:#fff8ee;
+  padding:5px 18px;border-radius:20px;
+  font-size:14px;
+  box-shadow:0 4px 10px rgba(0,0,0,.15);
+}
+.content{padding:35px 18px 20px;display:flex;flex-direction:column;gap:14px}
+.item{
+  background:white;
+  border-radius:14px;
+  padding:14px 16px;
+  display:flex;gap:12px;align-items:center;
+  box-shadow:0 2px 8px rgba(0,0,0,.06);
+  border-left:4px solid #7a0f2a;
+}
+.item .icon{font-size:18px}
+.item .label{font-size:10px;color:#999;font-weight:600;letter-spacing:.5px}
+.item .value{font-size:13.5px;color:#2b0a12;font-weight:600;margin-top:2px}
+.bottom-box{
+  background:#7a0f2a;
+  border-radius:14px;
+  padding:14px;
+  text-align:center;
+  color:white;
+  margin-top:4px;
+}
+.bottom-box .title{font-weight:700;font-size:14px}
+.bottom-box .desc{font-size:12px;font-style:italic;color:#f0c6c6;margin-top:4px}
+</style>
 </head>
-<body class="bg-surface text-brand-text min-h-screen bg-grid antialiased selection:bg-brand-blue selection:text-white">
-
-    <!-- Subtle Header -->
-    <header class="sticky top-0 z-50 bg-[#0b0f17]/90 backdrop-blur-md border-b border-surface-border">
-        <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-            <a href="#" class="font-mono text-sm font-semibold tracking-tight text-white flex items-center gap-2">
-                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
-                <span>adly.irsyad</span>
-                <span class="text-brand-muted font-normal text-xs">/ sys.log</span>
-            </a>
-
-            <nav class="hidden md:flex items-center gap-6 text-xs font-mono text-brand-muted">
-                <a href="#about" class="hover:text-white transition-colors">01. Log</a>
-                <a href="#projects" class="hover:text-white transition-colors">02. Praktikum</a>
-                <a href="#stack" class="hover:text-white transition-colors">03. Stack</a>
-                <a href="#contact" class="hover:text-white transition-colors">04. Kontak</a>
-            </nav>
-
-            <a href="#contact" class="text-xs font-mono px-3.5 py-1.5 rounded bg-surface-card border border-surface-border hover:bg-surface-hover hover:border-slate-600 transition-all text-slate-200">
-                Pesan / Connect
-            </a>
-        </div>
-    </header>
-
-    <main class="max-w-5xl mx-auto px-6 pt-12 pb-24 space-y-20">
-
-        <!-- Hero Section: Clean & Authentic Layout -->
-        <section id="about" class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start pt-4">
-            <div class="md:col-span-8 space-y-6">
-                
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded bg-surface-card border border-surface-border font-mono text-xs text-brand-muted">
-                    <i data-lucide="map-pin" class="w-3.5 h-3.5 text-brand-cyan"></i>
-                    <span>Depok, West Java • SMK Taruna Bhakti</span>
-                </div>
-
-                <div class="space-y-3">
-                    <h1 class="text-3xl md:text-4xl font-bold tracking-tight text-white leading-snug">
-                        Adly Irsyad Hafizh
-                    </h1>
-                    <p class="text-lg text-brand-muted font-normal leading-relaxed">
-                        Siswa <span class="text-slate-200 font-medium">Teknik Komputer & Jaringan (TKJ)</span> kelas 11. Berfokus pada pengelolaan Linux Server, administrasi Docker container, serta pemahaman topologi jaringan dasar menuju spesialisasi <span class="text-slate-200 font-medium">Cloud Engineering</span>.
-                    </p>
-                </div>
-
-                <!-- Status Badges -->
-                <div class="pt-2 flex flex-wrap gap-4 text-xs font-mono text-brand-muted">
-                    <div class="flex items-center gap-2 bg-surface-card px-3 py-1.5 rounded border border-surface-border">
-                        <i data-lucide="cpu" class="w-4 h-4 text-brand-blue"></i>
-                        <span>TKJ-4 Classmate</span>
-                    </div>
-                    <div class="flex items-center gap-2 bg-surface-card px-3 py-1.5 rounded border border-surface-border">
-                        <i data-lucide="server" class="w-4 h-4 text-emerald-400"></i>
-                        <span>Debian / Ubuntu Admin</span>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- Quick Info Box (Personal Log Style) -->
-            <div class="md:col-span-4 card-custom p-5 rounded-lg space-y-4 font-mono text-xs">
-                <div class="border-b border-surface-border pb-3 flex items-center justify-between">
-                    <span class="text-slate-400 font-semibold">// CURRENT_FOCUS</span>
-                    <span class="text-[10px] text-emerald-400 bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-800">ACTIVE</span>
-                </div>
-
-                <ul class="space-y-2.5 text-brand-muted">
-                    <li class="flex items-start gap-2">
-                        <span class="text-brand-blue">▸</span>
-                        <span>Docker Bridge Networks & Named Volumes</span>
-                    </li>
-                    <li class="flex items-start gap-2">
-                        <span class="text-brand-blue">▸</span>
-                        <span>Debian Server: SSH, DHCP & Web Services</span>
-                    </li>
-                    <li class="flex items-start gap-2">
-                        <span class="text-brand-blue">▸</span>
-                        <span>Cisco Packet Tracer Subnetting</span>
-                    </li>
-                </ul>
-
-                <div class="pt-2 border-t border-surface-border text-[11px] text-slate-500">
-                    Last updated: September 2026
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 02: Projects & Practical Labs -->
-        <section id="projects" class="space-y-6">
-            <div class="flex items-center justify-between border-b border-surface-border pb-3">
-                <h2 class="font-mono text-xs font-semibold tracking-wider uppercase text-brand-muted flex items-center gap-2">
-                    <span class="text-brand-blue">02.</span> Catatan Praktikum & Proyek Lab
-                </h2>
-                <span class="font-mono text-[11px] text-slate-500">TKJ Documentation</span>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                
-                <!-- Lab 1 -->
-                <div class="card-custom p-6 rounded-lg space-y-3">
-                    <div class="flex items-center justify-between font-mono text-xs">
-                        <span class="text-brand-cyan bg-cyan-950/50 px-2.5 py-0.5 rounded border border-cyan-800/60">Docker Lab</span>
-                        <span class="text-slate-500">2026</span>
-                    </div>
-                    <h3 class="text-base font-bold text-white">Multi-Container Nginx Portal</h3>
-                    <p class="text-xs text-brand-muted leading-relaxed">
-                        Implementasi 3 kontainer Nginx terisolasi pada kustom bridge network dengan integrasi bind mounts serta named volumes untuk pengujian portal iframe.
-                    </p>
-                    <div class="pt-2 flex items-center gap-3 font-mono text-[11px] text-slate-400">
-                        <span>• Nginx</span>
-                        <span>• Docker CLI</span>
-                        <span>• Bridge Net</span>
-                    </div>
-                </div>
-
-                <!-- Lab 2 -->
-                <div class="card-custom p-6 rounded-lg space-y-3">
-                    <div class="flex items-center justify-between font-mono text-xs">
-                        <span class="text-emerald-400 bg-emerald-950/50 px-2.5 py-0.5 rounded border border-emerald-800/60">Server Admin</span>
-                        <span class="text-slate-500">2026</span>
-                    </div>
-                    <h3 class="text-base font-bold text-white">Debian Linux Server Environment</h3>
-                    <p class="text-xs text-brand-muted leading-relaxed">
-                        Konfigurasi lengkap VirtualBox Debian Server mencakup pengalamatan IP static, layanan OpenSSH remote, isc-dhcp-server, dan Apache2.
-                    </p>
-                    <div class="pt-2 flex items-center gap-3 font-mono text-[11px] text-slate-400">
-                        <span>• Debian 12</span>
-                        <span>• OpenSSH</span>
-                        <span>• DHCP</span>
-                    </div>
-                </div>
-
-                <!-- Lab 3 -->
-                <div class="card-custom p-6 rounded-lg space-y-3">
-                    <div class="flex items-center justify-between font-mono text-xs">
-                        <span class="text-brand-blue bg-blue-950/50 px-2.5 py-0.5 rounded border border-blue-800/60">Network Study</span>
-                        <span class="text-slate-500">2026</span>
-                    </div>
-                    <h3 class="text-base font-bold text-white">Analisis Starlink vs Fiber Optic</h3>
-                    <p class="text-xs text-brand-muted leading-relaxed">
-                        Studi komparatif efisiensi jaringan internet satelit Starlink melawan infrastruktur kabel Fiber Optik untuk area sekolah pedesaan.
-                    </p>
-                    <div class="pt-2 flex items-center gap-3 font-mono text-[11px] text-slate-400">
-                        <span>• Topologi</span>
-                        <span>• Latensi</span>
-                        <span>• Teks Diskusi</span>
-                    </div>
-                </div>
-
-                <!-- Lab 4 -->
-                <div class="card-custom p-6 rounded-lg space-y-3">
-                    <div class="flex items-center justify-between font-mono text-xs">
-                        <span class="text-purple-400 bg-purple-950/50 px-2.5 py-0.5 rounded border border-purple-800/60">Frontend Design</span>
-                        <span class="text-slate-500">2026</span>
-                    </div>
-                    <h3 class="text-base font-bold text-white">Responsive Web Interface</h3>
-                    <p class="text-xs text-brand-muted leading-relaxed">
-                        Eksperimen pembuatan tampilan web portofolio personal yang bersih dan ringan menggunakan HTML5, Tailwind CSS, dan komponen interaktif.
-                    </p>
-                    <div class="pt-2 flex items-center gap-3 font-mono text-[11px] text-slate-400">
-                        <span>• HTML5</span>
-                        <span>• Tailwind</span>
-                        <span>• JavaScript</span>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- Section 03: Technical Stack -->
-        <section id="stack" class="space-y-6">
-            <div class="flex items-center justify-between border-b border-surface-border pb-3">
-                <h2 class="font-mono text-xs font-semibold tracking-wider uppercase text-brand-muted flex items-center gap-2">
-                    <span class="text-brand-blue">03.</span> Tooling & Environment
-                </h2>
-                <span class="font-mono text-[11px] text-slate-500">Technical Arsenal</span>
-            </div>
-
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono text-xs">
-                <div class="card-custom p-4 rounded-lg space-y-1">
-                    <span class="text-white font-semibold block">Linux Systems</span>
-                    <span class="text-slate-400 text-[11px]">Debian, Ubuntu Server</span>
-                </div>
-                <div class="card-custom p-4 rounded-lg space-y-1">
-                    <span class="text-white font-semibold block">Containerization</span>
-                    <span class="text-slate-400 text-[11px]">Docker, Nginx, Volumes</span>
-                </div>
-                <div class="card-custom p-4 rounded-lg space-y-1">
-                    <span class="text-white font-semibold block">Network Tools</span>
-                    <span class="text-slate-400 text-[11px]">Cisco Packet Tracer</span>
-                </div>
-                <div class="card-custom p-4 rounded-lg space-y-1">
-                    <span class="text-white font-semibold block">Virtualization</span>
-                    <span class="text-slate-400 text-[11px]">VirtualBox VM</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 04: Contact Form -->
-        <section id="contact" class="space-y-6 pt-4">
-            <div class="flex items-center justify-between border-b border-surface-border pb-3">
-                <h2 class="font-mono text-xs font-semibold tracking-wider uppercase text-brand-muted flex items-center gap-2">
-                    <span class="text-brand-blue">04.</span> Kontak / Kirim Pesan
-                </h2>
-                <span class="font-mono text-[11px] text-slate-500">Get in Touch</span>
-            </div>
-
-            <div class="card-custom p-6 sm:p-8 rounded-lg max-w-2xl">
-                <form onsubmit="event.preventDefault(); alert('Pesan Anda berhasil dikirim!');" class="space-y-4">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div class="space-y-1.5">
-                            <label class="block font-mono text-xs text-slate-400">Nama Lengkap</label>
-                            <input type="text" required placeholder="Nama Anda" class="w-full px-3.5 py-2.5 rounded bg-[#0b0f17] border border-surface-border text-sm text-white focus:outline-none focus:border-brand-blue transition-colors">
-                        </div>
-                        <div class="space-y-1.5">
-                            <label class="block font-mono text-xs text-slate-400">Alamat Email</label>
-                            <input type="email" required placeholder="nama@email.com" class="w-full px-3.5 py-2.5 rounded bg-[#0b0f17] border border-surface-border text-sm text-white focus:outline-none focus:border-brand-blue transition-colors">
-                        </div>
-                    </div>
-
-                    <div class="space-y-1.5">
-                        <label class="block font-mono text-xs text-slate-400">Isi Pesan</label>
-                        <textarea rows="4" required placeholder="Tuliskan pesan atau pertanyaan..." class="w-full px-3.5 py-2.5 rounded bg-[#0b0f17] border border-surface-border text-sm text-white focus:outline-none focus:border-brand-blue transition-colors"></textarea>
-                    </div>
-
-                    <button type="submit" class="font-mono text-xs font-medium px-5 py-2.5 rounded bg-brand-blue hover:bg-blue-500 text-white transition-colors flex items-center gap-2">
-                        <i data-lucide="send" class="w-3.5 h-3.5"></i>
-                        <span>Kirim Pesan</span>
-                    </button>
-                </form>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Simple Footer -->
-    <footer class="border-t border-surface-border py-8 text-center font-mono text-xs text-slate-500">
-        <div class="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p>© 2026 Adly Irsyad Hafizh. All rights reserved.</p>
-            <p class="text-[11px] text-slate-600">Designed with simplicity & precision.</p>
-        </div>
-    </footer>
-
-    <script>
-        // Lucide Icons initialization
-        lucide.createIcons();
-    </script>
+<body>
+<div class="card">
+  <div class="top">
+    <div class="avatar">👨‍💻</div>
+    <h1>HAFIZ</h1>
+    <p class="sub">Daftar Chevron Kanan & Web Dev</p>
+    <div class="badge">hafizhadly499</div>
+    <div class="cake">🚀 ✨ 🔥</div>
+  </div>
+  <div class="content">
+    <div class="item">
+      <div class="icon">👤</div>
+      <div><div class="label">NAMA LENGKAP</div><div class="value">Hafiz Hadly</div></div>
+    </div>
+    <div class="item">
+      <div class="icon">🏫</div>
+      <div><div class="label">KELAS / JURUSAN</div><div class="value">11 TKJ - Teknik Komputer & Jaringan</div></div>
+    </div>
+    <div class="item">
+      <div class="icon">💻</div>
+      <div><div class="label">KEAHLIAN / MINAT</div><div class="value">Web Design & Chevron Project</div></div>
+    </div>
+    <div class="item">
+      <div class="icon">✨</div>
+      <div><div class="label">HOBI</div><div class="value">Ngoding, Eksperimen Vercel & GitHub</div></div>
+    </div>
+    <div class="bottom-box">
+      <div class="title">🔥 Favorite Vibe</div>
+      <div class="desc">"Deploy tanpa beli domain tetap jalan!"</div>
+    </div>
+  </div>
+</div>
 </body>
 </html>
