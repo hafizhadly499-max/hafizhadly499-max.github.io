@@ -1,496 +1,732 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adly Irsyad Hafizh | TKJ & Cloud Engineering Operations</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- Three.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        net: {
-                            bg: '#030816',
-                            card: 'rgba(8, 20, 44, 0.75)',
-                            border: 'rgba(0, 162, 255, 0.25)',
-                            blue: '#0088ff',
-                            cyan: '#00f0ff',
-                            glow: '#00d2ff'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    <title>Adly Irsyad Hafizh | Portfolio</title>
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
 
         body {
-            background-color: #030816;
-            color: #c0e0ff;
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #050816;
+            color: white;
             overflow-x: hidden;
         }
 
-        .font-mono {
-            font-family: 'JetBrains Mono', monospace;
+        /* BACKGROUND */
+        .background {
+            position: fixed;
+            inset: 0;
+            z-index: -10;
+            background:
+                radial-gradient(circle at 20% 20%, #173b8f 0%, transparent 30%),
+                radial-gradient(circle at 80% 70%, #6b1fa8 0%, transparent 30%),
+                linear-gradient(135deg, #030712, #0a1028, #12051e);
         }
 
-        /* Glassmorphism Panel Biru TKJ */
-        .glass-panel {
-            background: rgba(8, 24, 52, 0.75);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(0, 170, 255, 0.2);
-            box-shadow: 0 8px 32px 0 rgba(0, 80, 200, 0.25);
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(5px);
+            opacity: .45;
+            z-index: -5;
+            animation: float 8s ease-in-out infinite;
         }
 
-        .glass-panel:hover {
-            border-color: rgba(0, 240, 255, 0.5);
-            box-shadow: 0 0 25px rgba(0, 170, 255, 0.3);
+        .orb1 {
+            width: 180px;
+            height: 180px;
+            background: #00d9ff;
+            top: 10%;
+            left: 5%;
         }
 
-        /* Gradient & Glow Blue Effects */
-        .text-glow {
-            background: linear-gradient(135deg, #60a5fa 0%, #00f0ff 50%, #3b82f6 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+        .orb2 {
+            width: 220px;
+            height: 220px;
+            background: #a855f7;
+            right: 5%;
+            top: 50%;
+            animation-delay: 2s;
         }
 
-        /* LED Indicator Pulse */
-        .led-green {
-            box-shadow: 0 0 8px #10b981;
-        }
-        .led-blue {
-            box-shadow: 0 0 8px #00f0ff;
+        .orb3 {
+            width: 140px;
+            height: 140px;
+            background: #ff2bd6;
+            bottom: 5%;
+            left: 45%;
+            animation-delay: 4s;
         }
 
-        /* Scrollbar Biru Custom */
-        ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
+        @keyframes float {
+            0%,100% {
+                transform: translateY(0) translateX(0);
+            }
+            50% {
+                transform: translateY(-35px) translateX(25px);
+            }
         }
-        ::-webkit-scrollbar-track {
-            background: #030816;
+
+        /* NAVBAR */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(5, 8, 22, .65);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255,255,255,.1);
+            z-index: 1000;
         }
-        ::-webkit-scrollbar-thumb {
-            background: #0066cc;
-            border-radius: 3px;
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #00eaff;
+            text-shadow: 0 0 15px #00eaff;
         }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #00f0ff;
+
+        nav ul {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            transition: .3s;
+        }
+
+        nav a:hover {
+            color: #00eaff;
+            text-shadow: 0 0 10px #00eaff;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 8% 50px;
+        }
+
+        .hero-container {
+            width: 100%;
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: 1.2fr .8fr;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .hero-text {
+            animation: slideLeft 1.2s ease;
+        }
+
+        @keyframes slideLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-80px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .small {
+            color: #00eaff;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: clamp(45px, 6vw, 80px);
+            line-height: 1;
+            margin-bottom: 20px;
+        }
+
+        h1 span {
+            color: #00eaff;
+            text-shadow:
+                0 0 10px #00eaff,
+                0 0 30px #00eaff;
+        }
+
+        .typing {
+            font-size: 25px;
+            color: #d7ddff;
+            margin-bottom: 25px;
+        }
+
+        .description {
+            max-width: 650px;
+            line-height: 1.8;
+            color: #aeb7d9;
+            margin-bottom: 30px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 13px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            color: white;
+            border: 1px solid #00eaff;
+            transition: .3s;
+            background: rgba(0,234,255,.08);
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            background: #00eaff;
+            color: #050816;
+            box-shadow: 0 0 25px #00eaff;
+        }
+
+        /* PROFILE CARD */
+        .profile-card {
+            position: relative;
+            padding: 40px;
+            border-radius: 30px;
+            background: rgba(255,255,255,.06);
+            border: 1px solid rgba(255,255,255,.15);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 0 50px rgba(0,234,255,.12);
+            animation: slideRight 1.2s ease;
+        }
+
+        @keyframes slideRight {
+            from {
+                opacity: 0;
+                transform: translateX(80px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .profile-icon {
+            width: 150px;
+            height: 150px;
+            margin: auto auto 25px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 55px;
+            background: linear-gradient(135deg,#00eaff,#9d4edd,#ff2bd6);
+            box-shadow:
+                0 0 25px #00eaff,
+                0 0 60px rgba(157,78,221,.6);
+            animation: pulse 3s infinite;
+        }
+
+        @keyframes pulse {
+            0%,100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.08);
+            }
+        }
+
+        .profile-card h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .info {
+            display: flex;
+            justify-content: space-between;
+            padding: 13px 0;
+            border-bottom: 1px solid rgba(255,255,255,.1);
+            color: #cbd3f0;
+        }
+
+        .info span:first-child {
+            color: #00eaff;
+        }
+
+        /* SECTION */
+        section {
+            min-height: 80vh;
+            padding: 100px 8%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .section-container {
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 45px;
+            margin-bottom: 50px;
+        }
+
+        .title span {
+            color: #00eaff;
+            text-shadow: 0 0 15px #00eaff;
+        }
+
+        /* ABOUT */
+        .about-box {
+            padding: 40px;
+            border-radius: 25px;
+            background: rgba(255,255,255,.05);
+            border: 1px solid rgba(255,255,255,.1);
+            backdrop-filter: blur(15px);
+            line-height: 1.9;
+            color: #c5cce8;
+            transition: .4s;
+        }
+
+        .about-box:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 0 30px rgba(0,234,255,.15);
+        }
+
+        /* SKILLS */
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 20px;
+        }
+
+        .skill {
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 20px;
+            background: rgba(255,255,255,.05);
+            border: 1px solid rgba(255,255,255,.1);
+            transition: .4s;
+        }
+
+        .skill:hover {
+            transform: translateY(-12px) scale(1.03);
+            border-color: #00eaff;
+            box-shadow: 0 0 30px rgba(0,234,255,.25);
+        }
+
+        .skill-icon {
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .skill h3 {
+            margin-bottom: 10px;
+        }
+
+        .skill p {
+            color: #9fa8c7;
+            font-size: 14px;
+        }
+
+        /* PROJECT */
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 25px;
+        }
+
+        .project {
+            padding: 30px;
+            border-radius: 22px;
+            background: rgba(255,255,255,.05);
+            border: 1px solid rgba(255,255,255,.1);
+            transition: .4s;
+        }
+
+        .project:hover {
+            transform: translateY(-10px);
+            border-color: #a855f7;
+            box-shadow: 0 0 30px rgba(168,85,247,.25);
+        }
+
+        .project h3 {
+            color: #00eaff;
+            margin-bottom: 15px;
+        }
+
+        .project p {
+            color: #aeb7d9;
+            line-height: 1.7;
+        }
+
+        /* CONTACT */
+        .contact {
+            text-align: center;
+        }
+
+        .contact p {
+            color: #aeb7d9;
+            margin-bottom: 30px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: rgba(0,0,0,.3);
+            color: #8d96b8;
+            border-top: 1px solid rgba(255,255,255,.1);
+        }
+
+        /* PARTICLES */
+        .particles span {
+            position: fixed;
+            width: 3px;
+            height: 3px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 10px white;
+            animation: stars linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes stars {
+            from {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+            }
+            to {
+                transform: translateY(-10vh);
+                opacity: 0;
+            }
+        }
+
+        /* RESPONSIVE */
+        @media(max-width:900px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+            }
+
+            .skills {
+                grid-template-columns: repeat(2,1fr);
+            }
+
+            .projects {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                gap: 12px;
+            }
+        }
+
+        @media(max-width:600px) {
+            nav {
+                padding: 15px 5%;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .hero {
+                padding: 100px 6% 50px;
+            }
+
+            section {
+                padding: 80px 6%;
+            }
+
+            .skills {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-card {
+                padding: 25px;
+            }
         }
     </style>
 </head>
-<body class="relative min-h-screen text-slate-200 antialiased selection:bg-cyan-500 selection:text-black">
 
-    <!-- Canvas Background Matrix Nodes (Three.js) -->
-    <canvas id="net-canvas" class="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none"></canvas>
+<body>
 
-    <!-- Top Navigation Operations Bar -->
-    <header class="fixed top-0 left-0 w-full z-50 bg-slate-950/80 backdrop-blur-md border-b border-blue-900/40">
-        <div class="max-w-[1600px] mx-auto px-6 h-16 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <span class="p-2 rounded-lg bg-blue-900/40 border border-cyan-500/40 text-cyan-400">
-                    <i data-lucide="network" class="w-5 h-5"></i>
-                </span>
-                <div>
-                    <h1 class="text-sm font-extrabold tracking-wider text-white font-mono flex items-center gap-2">
-                        ADLY_IRSYAD<span class="text-cyan-400">.TKJ</span>
-                    </h1>
-                    <p class="text-[10px] text-blue-400/80 font-mono">NODE ID: XI-TKJ-4 • DEPOK</p>
+    <div class="background"></div>
+
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+
+    <!-- PARTICLES -->
+    <div class="particles">
+        <span style="left:5%;animation-duration:8s;"></span>
+        <span style="left:12%;animation-duration:12s;"></span>
+        <span style="left:20%;animation-duration:9s;"></span>
+        <span style="left:28%;animation-duration:14s;"></span>
+        <span style="left:36%;animation-duration:10s;"></span>
+        <span style="left:45%;animation-duration:13s;"></span>
+        <span style="left:53%;animation-duration:8s;"></span>
+        <span style="left:61%;animation-duration:11s;"></span>
+        <span style="left:70%;animation-duration:15s;"></span>
+        <span style="left:78%;animation-duration:9s;"></span>
+        <span style="left:86%;animation-duration:12s;"></span>
+        <span style="left:94%;animation-duration:10s;"></span>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="logo">&lt;ADLY/&gt;</div>
+
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">Tentang</a></li>
+            <li><a href="#skills">Skill</a></li>
+            <li><a href="#projects">Project</a></li>
+            <li><a href="#contact">Kontak</a></li>
+        </ul>
+    </nav>
+
+    <!-- HOME -->
+    <section class="hero" id="home">
+
+        <div class="hero-container">
+
+            <div class="hero-text">
+
+                <div class="small">👋 HALO, SAYA</div>
+
+                <h1>
+                    Adly<br>
+                    <span>Irsyad Hafizh</span>
+                </h1>
+
+                <div class="typing">
+                    Student • TJKT • Future Cloud Engineer
                 </div>
+
+                <p class="description">
+                    Selamat datang di website portfolio saya.
+                    Saya adalah siswa yang tertarik dengan dunia jaringan,
+                    teknologi informasi, server, dan pengembangan website.
+                </p>
+
+                <div class="buttons">
+                    <a href="#about" class="btn">✨ Tentang Saya</a>
+                    <a href="#projects" class="btn">🚀 Lihat Project</a>
+                </div>
+
             </div>
 
-            <!-- Network Status Bar -->
-            <div class="hidden lg:flex items-center gap-6 text-xs font-mono bg-blue-950/50 px-4 py-2 rounded-xl border border-blue-800/40">
-                <div class="flex items-center gap-2">
-                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse led-green"></span>
-                    <span class="text-slate-400">STATUS:</span>
-                    <span class="text-emerald-400 font-bold">ONLINE</span>
+            <div class="profile-card">
+
+                <div class="profile-icon">
+                    💻
                 </div>
-                <div class="flex items-center gap-2">
-                    <i data-lucide="server" class="w-3.5 h-3.5 text-cyan-400"></i>
-                    <span class="text-slate-400">HOST:</span>
-                    <span class="text-cyan-400 font-bold">DEBIAN/DOCKER</span>
+
+                <h2>My Profile</h2>
+
+                <div class="info">
+                    <span>Nama</span>
+                    <span>Adly Irsyad Hafizh</span>
                 </div>
-                <div class="flex items-center gap-2">
-                    <i data-lucide="cpu" class="w-3.5 h-3.5 text-blue-400"></i>
-                    <span class="text-slate-400">TARGET:</span>
-                    <span class="text-blue-400 font-bold">CLOUD ENGINEER</span>
+
+                <div class="info">
+                    <span>Kelas</span>
+                    <span>XI TKJ 4</span>
                 </div>
+
+                <div class="info">
+                    <span>Sekolah</span>
+                    <span>SMK Taruna Bhakti</span>
+                </div>
+
+                <div class="info">
+                    <span>Hobi</span>
+                    <span>🏊 Berenang</span>
+                </div>
+
+                <div class="info">
+                    <span>Cita-cita</span>
+                    <span>☁️ Cloud Engineer</span>
+                </div>
+
             </div>
 
-            <a href="#contact" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold text-black bg-cyan-400 hover:bg-cyan-300 transition-all font-mono">
-                <i data-lucide="send" class="w-3.5 h-3.5"></i>
-                <span>CONNECT</span>
-            </a>
         </div>
-    </header>
 
-    <!-- Main Landscape Operational Layout -->
-    <main class="pt-24 px-6 pb-12 max-w-[1600px] mx-auto space-y-8">
+    </section>
 
-        <!-- SECTION 1: LANDSCAPE DASHBOARD HERO -->
-        <section class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-            
-            <!-- Left Info Panel (5 Columns) -->
-            <div class="lg:col-span-5 glass-panel rounded-2xl p-6 flex flex-col justify-between space-y-6">
-                <div class="space-y-4">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-blue-950 border border-blue-500/40 text-cyan-400 text-xs font-mono">
-                        <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
-                        SMK TARUNA BHAKTI DEPOK
-                    </div>
+    <!-- ABOUT -->
+    <section id="about">
 
-                    <h1 class="text-3xl xl:text-5xl font-extrabold text-white leading-tight">
-                        Adly Irsyad <br>
-                        <span class="text-glow">Network & Server Specialist</span>
-                    </h1>
+        <div class="section-container">
 
-                    <p class="text-sm text-slate-300 leading-relaxed">
-                        Siswa Teknik Komputer dan Jaringan (TKJ) kelas 11 berfokus pada administrasi Linux, konfigurasikan infrastruktur jaringan Cisco, containerization Docker, dan perancangan jaringan Cloud.
+            <h2 class="title">
+                Tentang <span>Saya</span>
+            </h2>
+
+            <div class="about-box">
+
+                <p>
+                    Halo! Nama saya <strong>Adly Irsyad Hafizh</strong>.
+                    Saya merupakan siswa kelas XI TKJ 4 di
+                    <strong>SMK Taruna Bhakti Depok</strong>.
+                </p>
+
+                <br>
+
+                <p>
+                    Saya memiliki ketertarikan terhadap teknologi informasi,
+                    terutama jaringan komputer, server, Linux, Cisco,
+                    dan pengembangan website.
+                </p>
+
+                <br>
+
+                <p>
+                    Saya terus belajar dan mencoba berbagai project untuk
+                    meningkatkan kemampuan saya di bidang teknologi.
+                    Saya juga memiliki cita-cita menjadi seorang
+                    <strong>Cloud Engineer</strong>.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+
+        <div class="section-container">
+
+            <h2 class="title">
+                My <span>Skills</span>
+            </h2>
+
+            <div class="skills">
+
+                <div class="skill">
+                    <div class="skill-icon">🌐</div>
+                    <h3>Networking</h3>
+                    <p>Dasar jaringan komputer dan konfigurasi perangkat jaringan.</p>
+                </div>
+
+                <div class="skill">
+                    <div class="skill-icon">🐧</div>
+                    <h3>Linux</h3>
+                    <p>Belajar command line, server, repository dan web server.</p>
+                </div>
+
+                <div class="skill">
+                    <div class="skill-icon">⚙️</div>
+                    <h3>Cisco</h3>
+                    <p>Belajar konfigurasi dasar Cisco IOS dan routing.</p>
+                </div>
+
+                <div class="skill">
+                    <div class="skill-icon">💻</div>
+                    <h3>HTML</h3>
+                    <p>Membuat website dengan HTML, CSS dan JavaScript.</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- PROJECT -->
+    <section id="projects">
+
+        <div class="section-container">
+
+            <h2 class="title">
+                My <span>Projects</span>
+            </h2>
+
+            <div class="projects">
+
+                <div class="project">
+                    <h3>🌐 Website Portfolio</h3>
+                    <p>
+                        Website portfolio pribadi menggunakan HTML,
+                        CSS, dan animasi modern.
                     </p>
                 </div>
 
-                <!-- Quick Tech Tags -->
-                <div class="space-y-3">
-                    <p class="text-xs font-mono text-cyan-400 uppercase tracking-widest">// Core Systems</p>
-                    <div class="flex flex-wrap gap-2 text-xs font-mono">
-                        <span class="px-3 py-1 rounded-md bg-blue-900/40 border border-blue-700 text-blue-200">Debian Linux</span>
-                        <span class="px-3 py-1 rounded-md bg-blue-900/40 border border-blue-700 text-blue-200">Ubuntu Server</span>
-                        <span class="px-3 py-1 rounded-md bg-blue-900/40 border border-blue-700 text-blue-200">Docker</span>
-                        <span class="px-3 py-1 rounded-md bg-blue-900/40 border border-blue-700 text-blue-200">Cisco Packet Tracer</span>
-                        <span class="px-3 py-1 rounded-md bg-blue-900/40 border border-blue-700 text-blue-200">VirtualBox</span>
-                    </div>
+                <div class="project">
+                    <h3>🖧 Cisco Networking</h3>
+                    <p>
+                        Praktik konfigurasi dasar router dan
+                        perangkat jaringan menggunakan Cisco IOS.
+                    </p>
                 </div>
 
-                <!-- Footer Stats -->
-                <div class="grid grid-cols-3 gap-3 pt-4 border-t border-blue-900/40 text-center font-mono">
-                    <div class="bg-blue-950/40 p-2 rounded-lg border border-blue-900/50">
-                        <p class="text-[10px] text-slate-400">GRADE</p>
-                        <p class="text-sm font-bold text-cyan-400">XI TKJ 4</p>
-                    </div>
-                    <div class="bg-blue-950/40 p-2 rounded-lg border border-blue-900/50">
-                        <p class="text-[10px] text-slate-400">LOCATION</p>
-                        <p class="text-sm font-bold text-cyan-400">Depok</p>
-                    </div>
-                    <div class="bg-blue-950/40 p-2 rounded-lg border border-blue-900/50">
-                        <p class="text-[10px] text-slate-400">AMBITION</p>
-                        <p class="text-sm font-bold text-cyan-400">Cloud Eng.</p>
-                    </div>
+                <div class="project">
+                    <h3>🐧 Linux Web Server</h3>
+                    <p>
+                        Praktik instalasi web server Linux dan
+                        membuat halaman website pribadi.
+                    </p>
                 </div>
+
             </div>
 
-            <!-- Right Interactive Terminal (7 Columns) -->
-            <div class="lg:col-span-7 glass-panel rounded-2xl p-4 flex flex-col font-mono text-xs bg-slate-950/90 border-blue-500/30 min-h-[380px]">
-                <div class="flex items-center justify-between px-3 py-2 bg-slate-900/80 rounded-lg border border-blue-900/50 mb-3">
-                    <div class="flex items-center gap-2">
-                        <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
-                        <span class="w-3 h-3 rounded-full bg-yellow-500/80"></span>
-                        <span class="w-3 h-3 rounded-full bg-green-500/80"></span>
-                        <span class="text-slate-400 font-bold ml-2">root@adly-node:~#</span>
-                    </div>
-                    <span class="text-[10px] text-cyan-400">BASH / DOCKER CLI</span>
-                </div>
+        </div>
 
-                <div id="terminal-body" class="flex-1 p-3 overflow-y-auto space-y-2 text-slate-300">
-                    <p class="text-blue-400">Welcome to Adly Irsyad Hafizh Interactive Network Terminal [v2026.1]</p>
-                    <p class="text-slate-400">Type <span class="text-yellow-400">'help'</span> or click buttons below to execute operations.</p>
-                    <div id="terminal-output" class="space-y-1"></div>
-                </div>
+    </section>
 
-                <!-- Quick Terminal Buttons -->
-                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-3 border-t border-blue-900/50">
-                    <button onclick="runCommand('whoami')" class="py-2 px-3 rounded bg-blue-900/40 hover:bg-blue-800/60 border border-blue-700/50 text-cyan-300 font-mono transition-all text-left">
-                        > whoami
-                    </button>
-                    <button onclick="runCommand('docker ps')" class="py-2 px-3 rounded bg-blue-900/40 hover:bg-blue-800/60 border border-blue-700/50 text-cyan-300 font-mono transition-all text-left">
-                        > docker ps
-                    </button>
-                    <button onclick="runCommand('ifconfig')" class="py-2 px-3 rounded bg-blue-900/40 hover:bg-blue-800/60 border border-blue-700/50 text-cyan-300 font-mono transition-all text-left">
-                        > ifconfig
-                    </button>
-                    <button onclick="runCommand('clear')" class="py-2 px-3 rounded bg-blue-900/40 hover:bg-blue-800/60 border border-blue-700/50 text-red-300 font-mono transition-all text-left">
-                        > clear
-                    </button>
-                </div>
-            </div>
-        </section>
+    <!-- CONTACT -->
+    <section id="contact">
 
-        <!-- SECTION 2: UTILITY LANDSCAPE PANELS (SUBNET CALCULATOR & NETWORK RACK) -->
-        <section class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-            
-            <!-- Left: Subnet Calculator Tool (6 Columns) -->
-            <div class="lg:col-span-6 glass-panel rounded-2xl p-6 space-y-4">
-                <div class="flex items-center justify-between border-b border-blue-900/50 pb-3">
-                    <h2 class="text-base font-bold text-white flex items-center gap-2 font-mono">
-                        <i data-lucide="calculator" class="w-4 h-4 text-cyan-400"></i>
-                        IPv4 Subnet Calculator Tool
-                    </h2>
-                    <span class="text-[10px] font-mono text-cyan-400 bg-blue-950 px-2 py-1 rounded border border-blue-800">TKJ LAB TOOL</span>
-                </div>
+        <div class="section-container contact">
 
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 font-mono text-xs">
-                    <div class="sm:col-span-2 space-y-1">
-                        <label class="text-slate-400">IP Address</label>
-                        <input id="calc-ip" type="text" value="192.168.10.1" class="w-full px-3 py-2 rounded bg-slate-950 border border-blue-800 text-white focus:outline-none focus:border-cyan-400">
-                    </div>
-                    <div class="space-y-1">
-                        <label class="text-slate-400">Prefix (/CIDR)</label>
-                        <input id="calc-cidr" type="number" value="24" min="8" max="30" class="w-full px-3 py-2 rounded bg-slate-950 border border-blue-800 text-white focus:outline-none focus:border-cyan-400">
-                    </div>
-                </div>
+            <h2 class="title">
+                Hubungi <span>Saya</span>
+            </h2>
 
-                <button onclick="calculateSubnet()" class="w-full py-2.5 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-mono font-bold transition-all">
-                    HITUNG SUBNETWORK
-                </button>
+            <p>
+                Terima kasih sudah mengunjungi portfolio saya.
+            </p>
 
-                <div id="calc-result" class="grid grid-cols-2 gap-3 p-3 bg-slate-950/80 rounded-lg border border-blue-900/50 text-xs font-mono">
-                    <div>
-                        <span class="text-slate-500 block text-[10px]">NETMASK</span>
-                        <span id="res-netmask" class="text-cyan-400 font-bold">255.255.255.0</span>
-                    </div>
-                    <div>
-                        <span class="text-slate-500 block text-[10px]">TOTAL HOSTS</span>
-                        <span id="res-hosts" class="text-cyan-400 font-bold">254 Usable Hosts</span>
-                    </div>
-                </div>
+            <div class="buttons" style="justify-content:center;">
+                <a href="https://github.com/" target="_blank" class="btn">
+                    🐙 GitHub
+                </a>
+
+                <a href="#home" class="btn">
+                    ⬆️ Kembali ke Atas
+                </a>
             </div>
 
-            <!-- Right: Simulated Cisco Switch Rack Status (6 Columns) -->
-            <div class="lg:col-span-6 glass-panel rounded-2xl p-6 space-y-4">
-                <div class="flex items-center justify-between border-b border-blue-900/50 pb-3">
-                    <h2 class="text-base font-bold text-white flex items-center gap-2 font-mono">
-                        <i data-lucide="router" class="w-4 h-4 text-cyan-400"></i>
-                        24-Port Gigabit Switch Monitor
-                    </h2>
-                    <span class="text-[10px] font-mono text-emerald-400 bg-emerald-950/60 px-2 py-1 rounded border border-emerald-800">LINK ACTIVE</span>
-                </div>
+        </div>
 
-                <p class="text-xs text-slate-300">Simulasi port switch aktif pada jaringan lab server sekolah TKJ:</p>
+    </section>
 
-                <!-- Switch Port Grid -->
-                <div class="grid grid-cols-12 gap-2 p-4 bg-slate-950 rounded-xl border border-blue-900/60">
-                    <!-- Generating 24 Switch Ports -->
-                    <script>
-                        for(let i = 1; i <= 24; i++) {
-                            const active = i <= 16;
-                            document.write(`
-                                <div class="flex flex-col items-center gap-1 group cursor-pointer">
-                                    <div class="w-full aspect-square rounded bg-slate-900 border ${active ? 'border-cyan-500/80' : 'border-slate-800'} flex items-center justify-center relative">
-                                        <span class="w-2 h-2 rounded-full ${active ? 'bg-cyan-400 animate-pulse led-blue' : 'bg-slate-700'}"></span>
-                                    </div>
-                                    <span class="text-[9px] font-mono ${active ? 'text-cyan-400' : 'text-slate-600'}">${i}</span>
-                                </div>
-                            `);
-                        }
-                    </script>
-                </div>
-                <div class="flex justify-between items-center text-[10px] font-mono text-slate-400">
-                    <span>PORTS 1-16: ACTIVE VLAN 10 (LAB SERVER)</span>
-                    <span>SPEED: 1 Gbps</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 3: PROJECTS & PRACTICAL LABS -->
-        <section class="space-y-6">
-            <div class="flex items-center justify-between border-b border-blue-900/50 pb-3">
-                <h2 class="text-lg font-bold text-white font-mono flex items-center gap-2">
-                    <i data-lucide="folder-git-2" class="w-5 h-5 text-cyan-400"></i>
-                    PRAKTIKUM & EXPERIMENTAL LABS
-                </h2>
-                <span class="text-xs font-mono text-blue-400">DOCUMENTED PROJECTS</span>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Lab 1 -->
-                <div class="glass-panel p-6 rounded-2xl space-y-4 flex flex-col justify-between">
-                    <div class="space-y-3">
-                        <div class="flex items-center justify-between">
-                            <span class="px-2.5 py-1 rounded bg-blue-950 border border-blue-700 text-cyan-300 text-[10px] font-mono">DOCKER</span>
-                            <span class="text-[10px] font-mono text-slate-400">SEP 2026</span>
-                        </div>
-                        <h3 class="text-base font-bold text-white">Multi-Container Nginx Portal</h3>
-                        <p class="text-xs text-slate-300 leading-relaxed">
-                            Penyusunan 3 kontainer Nginx terintegrasi dalam bridge network kustom dengan named volumes dan bind mounts portal iframe.
-                        </p>
-                    </div>
-                    <div class="pt-3 border-t border-blue-900/50 flex justify-between items-center text-xs font-mono">
-                        <span class="text-cyan-400">Nginx • Volume Mount</span>
-                        <a href="#" class="text-blue-400 hover:text-white">Detail →</a>
-                    </div>
-                </div>
-
-                <!-- Lab 2 -->
-                <div class="glass-panel p-6 rounded-2xl space-y-4 flex flex-col justify-between">
-                    <div class="space-y-3">
-                        <div class="flex items-center justify-between">
-                            <span class="px-2.5 py-1 rounded bg-blue-950 border border-blue-700 text-cyan-300 text-[10px] font-mono">LINUX SERVER</span>
-                            <span class="text-[10px] font-mono text-slate-400">SEP 2026</span>
-                        </div>
-                        <h3 class="text-base font-bold text-white">Debian Server Infrastructure</h3>
-                        <p class="text-xs text-slate-300 leading-relaxed">
-                            Konfigurasi OpenSSH remote access, IP addressing static, isc-dhcp-server, dan Apache2 Web Server pada environment Debian.
-                        </p>
-                    </div>
-                    <div class="pt-3 border-t border-blue-900/50 flex justify-between items-center text-xs font-mono">
-                        <span class="text-cyan-400">Debian • SSH • DHCP</span>
-                        <a href="#" class="text-blue-400 hover:text-white">Detail →</a>
-                    </div>
-                </div>
-
-                <!-- Lab 3 -->
-                <div class="glass-panel p-6 rounded-2xl space-y-4 flex flex-col justify-between">
-                    <div class="space-y-3">
-                        <div class="flex items-center justify-between">
-                            <span class="px-2.5 py-1 rounded bg-blue-950 border border-blue-700 text-cyan-300 text-[10px] font-mono">NETWORKING</span>
-                            <span class="text-[10px] font-mono text-slate-400">SEP 2026</span>
-                        </div>
-                        <h3 class="text-base font-bold text-white">Starlink vs Fiber Optic Study</h3>
-                        <p class="text-xs text-slate-300 leading-relaxed">
-                            Analisis komparasi topologi dan efisiensi jaringan internet satelit Starlink melawan ketersediaan Fiber Optik daerah pedesaan.
-                        </p>
-                    </div>
-                    <div class="pt-3 border-t border-blue-900/50 flex justify-between items-center text-xs font-mono">
-                        <span class="text-cyan-400">Satellite • Topology</span>
-                        <a href="#" class="text-blue-400 hover:text-white">Detail →</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 4: CONTACT / CONNECT -->
-        <section id="contact" class="max-w-xl mx-auto glass-panel p-8 rounded-2xl space-y-6">
-            <div class="text-center space-y-2">
-                <h2 class="text-xl font-bold text-white font-mono">INITIATE NETWORK CONNECTION</h2>
-                <p class="text-xs text-slate-400">Kirimkan pesan langsung ke sistem Adly Irsyad Hafizh</p>
-            </div>
-
-            <form onsubmit="event.preventDefault(); alert('Koneksi terhubung! Pesan Anda telah dikirim.');" class="space-y-4 font-mono text-xs">
-                <div>
-                    <label class="block text-slate-400 mb-1">USER_NAME</label>
-                    <input type="text" placeholder="Nama Lengkap" required class="w-full px-4 py-2.5 rounded bg-slate-950 border border-blue-800 text-white focus:outline-none focus:border-cyan-400">
-                </div>
-                <div>
-                    <label class="block text-slate-400 mb-1">EMAIL_ADDRESS</label>
-                    <input type="email" placeholder="nama@domain.com" required class="w-full px-4 py-2.5 rounded bg-slate-950 border border-blue-800 text-white focus:outline-none focus:border-cyan-400">
-                </div>
-                <div>
-                    <label class="block text-slate-400 mb-1">PAYLOAD_MESSAGE</label>
-                    <textarea rows="3" placeholder="Tuliskan pesan..." required class="w-full px-4 py-2.5 rounded bg-slate-950 border border-blue-800 text-white focus:outline-none focus:border-cyan-400"></textarea>
-                </div>
-                <button type="submit" class="w-full py-3 rounded bg-gradient-to-r from-blue-600 to-cyan-500 hover:opacity-90 text-black font-bold font-mono transition-all">
-                    SEND DATA PACKET
-                </button>
-            </form>
-        </section>
-
-    </main>
-
-    <footer class="border-t border-blue-900/40 py-6 text-center text-xs font-mono text-slate-500">
-        <p>© 2026 Adly Irsyad Hafizh. Designed for TKJ & Network Engineering Operations.</p>
+    <footer>
+        © 2026 Adly Irsyad Hafizh • XI TKJ 4 • SMK Taruna Bhakti
     </footer>
 
-    <!-- Scripts Scripting -->
-    <script>
-        lucide.createIcons();
-
-        // Three.js Network Particle Grid Background
-        const canvas = document.getElementById('net-canvas');
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
-
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-        const count = 180;
-        const positions = new Float32Array(count * 3);
-
-        for (let i = 0; i < count * 3; i++) {
-            positions[i] = (Math.random() - 0.5) * 12;
-        }
-
-        const geometry = new THREE.BufferGeometry();
-        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-
-        const material = new THREE.PointsMaterial({
-            size: 0.03,
-            color: 0x00f0ff,
-            transparent: true,
-            opacity: 0.7
-        });
-
-        const particles = new THREE.Points(geometry, material);
-        scene.add(particles);
-
-        camera.position.z = 3.5;
-
-        function animate() {
-            requestAnimationFrame(animate);
-            particles.rotation.y += 0.0008;
-            particles.rotation.x += 0.0004;
-            renderer.render(scene, camera);
-        }
-        animate();
-
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        });
-
-        // Interactive Terminal Command Execution
-        function runCommand(cmd) {
-            const out = document.getElementById('terminal-output');
-            let res = '';
-
-            if(cmd === 'whoami') {
-                res = '<p class="text-cyan-300">> Adly Irsyad Hafizh | SMK Taruna Bhakti Depok (XI TKJ 4) | Aspiring Cloud Engineer</p>';
-            } else if(cmd === 'docker ps') {
-                res = `<div class="text-slate-300">
-                    <p>CONTAINER ID   IMAGE          COMMAND                  STATUS          PORTS</p>
-                    <p class="text-emerald-400">a8f9102c118a   nginx:alpine   "/docker-entrypoint…"   Up 4 hours      0.0.0.0:80->80/tcp</p>
-                    <p class="text-emerald-400">b90d221c991e   debian:12      "bash"                   Up 12 hours     0.0.0.0:22->22/tcp</p>
-                </div>`;
-            } else if(cmd === 'ifconfig') {
-                res = `<div class="text-slate-300">
-                    <p><span class="text-yellow-300">eth0:</span> flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt; mtu 1500</p>
-                    <p>      inet <span class="text-cyan-300">192.168.10.100</span> netmask 255.255.255.0 broadcast 192.168.10.255</p>
-                </div>`;
-            } else if(cmd === 'clear') {
-                out.innerHTML = '';
-                return;
-            }
-
-            out.innerHTML += `<div class="mt-2"><span class="text-yellow-400">root@adly-node:~# ${cmd}</span>${res}</div>`;
-            document.getElementById('terminal-body').scrollTop = document.getElementById('terminal-body').scrollHeight;
-        }
-
-        // Subnet Calculator Function
-        function calculateSubnet() {
-            const cidr = parseInt(document.getElementById('calc-cidr').value) || 24;
-            const hosts = Math.pow(2, 32 - cidr) - 2;
-            
-            let mask = [];
-            for(let i = 0; i < 4; i++) {
-                let n = Math.min(Math.max(cidr - i * 8, 0), 8);
-                mask.push(256 - Math.pow(2, 8 - n));
-            }
-            
-            document.getElementById('res-netmask').innerText = mask.join('.');
-            document.getElementById('res-hosts').innerText = `${hosts > 0 ? hosts : 0} Usable Hosts`;
-        }
-    </script>
 </body>
 </html>
