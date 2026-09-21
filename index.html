@@ -3,29 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adly Irsyad Hafizh | Infernal Cloud & Network Domain</title>
-    <!-- Tailwind CSS CDN -->
+    <title>Adly Irsyad Hafizh | TKJ & Cloud Engineering Operations</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <!-- Three.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <!-- Vanilla Tilt.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        hell: {
-                            bg: '#080101',
-                            card: 'rgba(24, 6, 6, 0.75)',
-                            red: '#ff2a2a',
-                            orange: '#ff6b00',
-                            gold: '#ffb700',
-                            crimson: '#800000',
-                            border: 'rgba(255, 68, 68, 0.2)'
+                        net: {
+                            bg: '#030816',
+                            card: 'rgba(8, 20, 44, 0.75)',
+                            border: 'rgba(0, 162, 255, 0.25)',
+                            blue: '#0088ff',
+                            cyan: '#00f0ff',
+                            glow: '#00d2ff'
                         }
                     }
                 }
@@ -34,326 +31,382 @@
     </script>
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&family=Orbitron:wght@600;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap');
 
         body {
-            background-color: #080101;
-            color: #fca5a5;
-            font-family: 'Fira Code', monospace;
+            background-color: #030816;
+            color: #c0e0ff;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             overflow-x: hidden;
         }
 
-        h1, h2, h3, .font-orbitron {
-            font-family: 'Orbitron', sans-serif;
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
         }
 
-        /* Infernal Glassmorphism */
-        .hell-card {
-            background: rgba(20, 5, 5, 0.75);
+        /* Glassmorphism Panel Biru TKJ */
+        .glass-panel {
+            background: rgba(8, 24, 52, 0.75);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 68, 68, 0.25);
-            box-shadow: 0 8px 32px 0 rgba(255, 0, 0, 0.2);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(0, 170, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 80, 200, 0.25);
         }
 
-        .hell-card:hover {
-            border-color: rgba(255, 107, 0, 0.6);
-            box-shadow: 0 0 25px rgba(255, 42, 42, 0.4), inset 0 0 15px rgba(255, 107, 0, 0.2);
+        .glass-panel:hover {
+            border-color: rgba(0, 240, 255, 0.5);
+            box-shadow: 0 0 25px rgba(0, 170, 255, 0.3);
         }
 
-        /* Fire Text & Gradient */
-        .text-fire {
-            background: linear-gradient(135deg, #ff2a2a 0%, #ff6b00 50%, #ffb700 100%);
+        /* Gradient & Glow Blue Effects */
+        .text-glow {
+            background: linear-gradient(135deg, #60a5fa 0%, #00f0ff 50%, #3b82f6 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 20px rgba(255, 42, 42, 0.5);
+            text-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
         }
 
-        .fire-glow {
-            box-shadow: 0 0 20px rgba(255, 42, 42, 0.6), 0 0 40px rgba(255, 107, 0, 0.3);
+        /* LED Indicator Pulse */
+        .led-green {
+            box-shadow: 0 0 8px #10b981;
+        }
+        .led-blue {
+            box-shadow: 0 0 8px #00f0ff;
         }
 
-        /* Glowing Orbs Background */
-        .glow-ember {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(100px);
-            z-index: -1;
-            opacity: 0.3;
-            animation: pulseEmber 6s infinite alternate ease-in-out;
-        }
-
-        @keyframes pulseEmber {
-            0% { transform: scale(1) translateY(0); opacity: 0.25; }
-            100% { transform: scale(1.2) translateY(-20px); opacity: 0.45; }
-        }
-
-        /* Custom Scrollbar */
+        /* Scrollbar Biru Custom */
         ::-webkit-scrollbar {
-            width: 8px;
+            width: 6px;
+            height: 6px;
         }
         ::-webkit-scrollbar-track {
-            background: #080101;
+            background: #030816;
         }
         ::-webkit-scrollbar-thumb {
-            background: #800000;
-            border-radius: 4px;
+            background: #0066cc;
+            border-radius: 3px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #ff2a2a;
+            background: #00f0ff;
         }
     </style>
 </head>
-<body class="relative min-h-screen text-red-100 antialiased selection:bg-red-600 selection:text-white">
+<body class="relative min-h-screen text-slate-200 antialiased selection:bg-cyan-500 selection:text-black">
 
-    <!-- 3D Infernal Canvas (Fire & Embers Particles) -->
-    <canvas id="hell-canvas" class="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none"></canvas>
+    <!-- Canvas Background Matrix Nodes (Three.js) -->
+    <canvas id="net-canvas" class="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none"></canvas>
 
-    <!-- Lava Glow Backgrounds -->
-    <div class="glow-ember w-96 h-96 bg-red-700 top-10 left-10"></div>
-    <div class="glow-ember w-[30rem] h-[30rem] bg-orange-600 top-1/2 right-10"></div>
-    <div class="glow-ember w-96 h-96 bg-yellow-600 bottom-10 left-1/3"></div>
-
-    <!-- Navigation Bar -->
-    <header class="fixed top-0 left-0 w-full z-50 bg-black/80 backdrop-blur-md border-b border-red-900/40">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <a href="#" class="text-xl font-black tracking-widest text-white flex items-center gap-2 font-orbitron">
-                <span class="p-2 rounded-lg bg-red-950/80 text-red-500 border border-red-600/50 shadow-[0_0_15px_rgba(255,0,0,0.5)]">
-                    <i data-lucide="flame" class="w-5 h-5 animate-bounce"></i>
+    <!-- Top Navigation Operations Bar -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-slate-950/80 backdrop-blur-md border-b border-blue-900/40">
+        <div class="max-w-[1600px] mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <span class="p-2 rounded-lg bg-blue-900/40 border border-cyan-500/40 text-cyan-400">
+                    <i data-lucide="network" class="w-5 h-5"></i>
                 </span>
-                <span>ADLY<span class="text-red-500">.HELL</span></span>
-            </a>
+                <div>
+                    <h1 class="text-sm font-extrabold tracking-wider text-white font-mono flex items-center gap-2">
+                        ADLY_IRSYAD<span class="text-cyan-400">.TKJ</span>
+                    </h1>
+                    <p class="text-[10px] text-blue-400/80 font-mono">NODE ID: XI-TKJ-4 • DEPOK</p>
+                </div>
+            </div>
 
-            <nav class="hidden md:flex items-center gap-8 text-xs font-semibold tracking-wider text-red-200/80 uppercase">
-                <a href="#about" class="hover:text-red-500 transition-colors">Domain</a>
-                <a href="#skills" class="hover:text-orange-500 transition-colors">Powers</a>
-                <a href="#labs" class="hover:text-yellow-500 transition-colors">Infernal Labs</a>
-                <a href="#contact" class="hover:text-red-500 transition-colors">Summon</a>
-            </nav>
+            <!-- Network Status Bar -->
+            <div class="hidden lg:flex items-center gap-6 text-xs font-mono bg-blue-950/50 px-4 py-2 rounded-xl border border-blue-800/40">
+                <div class="flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse led-green"></span>
+                    <span class="text-slate-400">STATUS:</span>
+                    <span class="text-emerald-400 font-bold">ONLINE</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i data-lucide="server" class="w-3.5 h-3.5 text-cyan-400"></i>
+                    <span class="text-slate-400">HOST:</span>
+                    <span class="text-cyan-400 font-bold">DEBIAN/DOCKER</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i data-lucide="cpu" class="w-3.5 h-3.5 text-blue-400"></i>
+                    <span class="text-slate-400">TARGET:</span>
+                    <span class="text-blue-400 font-bold">CLOUD ENGINEER</span>
+                </div>
+            </div>
 
-            <a href="#contact" class="hidden md:inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-xs font-bold text-white bg-gradient-to-r from-red-700 via-orange-600 to-red-600 hover:brightness-125 transition-all fire-glow uppercase font-orbitron">
-                <i data-lucide="skull" class="w-4 h-4"></i>
-                <span>Hubungi Saya</span>
+            <a href="#contact" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold text-black bg-cyan-400 hover:bg-cyan-300 transition-all font-mono">
+                <i data-lucide="send" class="w-3.5 h-3.5"></i>
+                <span>CONNECT</span>
             </a>
         </div>
     </header>
 
-    <!-- Main Container -->
-    <main class="pt-32 px-6 max-w-7xl mx-auto space-y-36">
+    <!-- Main Landscape Operational Layout -->
+    <main class="pt-24 px-6 pb-12 max-w-[1600px] mx-auto space-y-8">
 
-        <!-- Hero Section -->
-        <section id="about" class="min-h-[80vh] flex flex-col lg:flex-row items-center justify-between gap-12 pt-6">
-            <div class="space-y-6 lg:w-3/5">
-                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-red-950/80 border border-red-600/50 text-red-400 text-xs font-bold font-mono">
-                    <span class="w-2.5 h-2.5 rounded-full bg-red-500 animate-ping"></span>
-                    HELLFIRE SERVER RUNNING • PORT 666
+        <!-- SECTION 1: LANDSCAPE DASHBOARD HERO -->
+        <section class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+            
+            <!-- Left Info Panel (5 Columns) -->
+            <div class="lg:col-span-5 glass-panel rounded-2xl p-6 flex flex-col justify-between space-y-6">
+                <div class="space-y-4">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-blue-950 border border-blue-500/40 text-cyan-400 text-xs font-mono">
+                        <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
+                        SMK TARUNA BHAKTI DEPOK
+                    </div>
+
+                    <h1 class="text-3xl xl:text-5xl font-extrabold text-white leading-tight">
+                        Adly Irsyad <br>
+                        <span class="text-glow">Network & Server Specialist</span>
+                    </h1>
+
+                    <p class="text-sm text-slate-300 leading-relaxed">
+                        Siswa Teknik Komputer dan Jaringan (TKJ) kelas 11 berfokus pada administrasi Linux, konfigurasikan infrastruktur jaringan Cisco, containerization Docker, dan perancangan jaringan Cloud.
+                    </p>
                 </div>
 
-                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-none text-white font-orbitron">
-                    INFERNAL <br>
-                    <span class="text-fire">NETWORKING</span>
-                </h1>
-
-                <p class="text-sm sm:text-base text-red-200/70 leading-relaxed font-mono">
-                    Saya <span class="text-white font-bold">Adly Irsyad Hafizh</span>, siswa SMK Taruna Bhakti Depok. Menguasai pengolahan Server Linux, jaringan komputer, containerization Docker, dan bercita-cita menguasai arsitektur <span class="text-orange-400 font-bold">Cloud Infrastructure</span> dari kedalaman arsitektur sistem.
-                </p>
-
-                <div class="flex flex-wrap gap-4 pt-4">
-                    <a href="#labs" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold text-white bg-gradient-to-r from-red-600 to-orange-600 hover:scale-105 transition-transform fire-glow font-orbitron text-xs tracking-wider">
-                        <i data-lucide="terminal" class="w-4 h-4"></i>
-                        Eksplorasi Lab
-                    </a>
-                    <a href="#contact" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold text-red-300 hell-card hover:bg-red-950/50 hover:text-white transition-all font-orbitron text-xs tracking-wider">
-                        <i data-lucide="mail" class="w-4 h-4"></i>
-                        Kirim Pesan
-                    </a>
-                </div>
-
-                <!-- Stats Grid -->
-                <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-8 border-t border-red-900/40">
-                    <div>
-                        <p class="text-[10px] uppercase tracking-widest text-red-500 font-bold">Base Domain</p>
-                        <p class="text-sm font-bold text-white">Depok, ID</p>
-                    </div>
-                    <div>
-                        <p class="text-[10px] uppercase tracking-widest text-red-500 font-bold">Level</p>
-                        <p class="text-sm font-bold text-white">XI TKJ</p>
-                    </div>
-                    <div>
-                        <p class="text-[10px] uppercase tracking-widest text-orange-500 font-bold">Target Ambition</p>
-                        <p class="text-sm font-bold text-orange-400">Cloud Engineer</p>
+                <!-- Quick Tech Tags -->
+                <div class="space-y-3">
+                    <p class="text-xs font-mono text-cyan-400 uppercase tracking-widest">// Core Systems</p>
+                    <div class="flex flex-wrap gap-2 text-xs font-mono">
+                        <span class="px-3 py-1 rounded-md bg-blue-900/40 border border-blue-700 text-blue-200">Debian Linux</span>
+                        <span class="px-3 py-1 rounded-md bg-blue-900/40 border border-blue-700 text-blue-200">Ubuntu Server</span>
+                        <span class="px-3 py-1 rounded-md bg-blue-900/40 border border-blue-700 text-blue-200">Docker</span>
+                        <span class="px-3 py-1 rounded-md bg-blue-900/40 border border-blue-700 text-blue-200">Cisco Packet Tracer</span>
+                        <span class="px-3 py-1 rounded-md bg-blue-900/40 border border-blue-700 text-blue-200">VirtualBox</span>
                     </div>
                 </div>
-            </div>
 
-            <!-- Profile Card -->
-            <div class="lg:w-2/5 w-full flex justify-center">
-                <div class="hell-card rounded-2xl p-6 w-full max-w-sm relative group" data-tilt data-tilt-max="15" data-tilt-speed="400">
-                    <div class="aspect-square rounded-xl bg-gradient-to-b from-red-950 via-black to-red-950 flex flex-col items-center justify-center p-6 border border-red-800/50 text-center relative overflow-hidden">
-                        
-                        <!-- Glowing Ember Halo -->
-                        <div class="w-32 h-32 rounded-full bg-gradient-to-tr from-red-600 via-orange-500 to-yellow-500 p-1 mb-4 shadow-[0_0_30px_rgba(255,42,42,0.8)]">
-                            <div class="w-full h-full rounded-full bg-black flex items-center justify-center text-4xl font-black text-red-500 font-orbitron">
-                                AIH
-                            </div>
-                        </div>
-
-                        <h3 class="text-xl font-bold text-white font-orbitron">Adly Irsyad H.</h3>
-                        <p class="text-xs text-orange-400 font-mono mt-1">@root_hell_admin</p>
-
-                        <div class="mt-6 flex gap-3">
-                            <a href="#" class="p-2.5 rounded-lg bg-red-950/80 border border-red-800/60 text-red-400 hover:text-white hover:bg-red-600 transition-all"><i data-lucide="github" class="w-4 h-4"></i></a>
-                            <a href="#" class="p-2.5 rounded-lg bg-red-950/80 border border-red-800/60 text-red-400 hover:text-white hover:bg-red-600 transition-all"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
-                            <a href="#" class="p-2.5 rounded-lg bg-red-950/80 border border-red-800/60 text-red-400 hover:text-white hover:bg-red-600 transition-all"><i data-lucide="shield" class="w-4 h-4"></i></a>
-                        </div>
+                <!-- Footer Stats -->
+                <div class="grid grid-cols-3 gap-3 pt-4 border-t border-blue-900/40 text-center font-mono">
+                    <div class="bg-blue-950/40 p-2 rounded-lg border border-blue-900/50">
+                        <p class="text-[10px] text-slate-400">GRADE</p>
+                        <p class="text-sm font-bold text-cyan-400">XI TKJ 4</p>
+                    </div>
+                    <div class="bg-blue-950/40 p-2 rounded-lg border border-blue-900/50">
+                        <p class="text-[10px] text-slate-400">LOCATION</p>
+                        <p class="text-sm font-bold text-cyan-400">Depok</p>
+                    </div>
+                    <div class="bg-blue-950/40 p-2 rounded-lg border border-blue-900/50">
+                        <p class="text-[10px] text-slate-400">AMBITION</p>
+                        <p class="text-sm font-bold text-cyan-400">Cloud Eng.</p>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <!-- Powers & Skills Section -->
-        <section id="skills" class="space-y-12">
-            <div class="text-center space-y-3">
-                <h2 class="text-xs font-bold uppercase tracking-widest text-red-500 font-orbitron">Arsenal & Abilities</h2>
-                <p class="text-3xl sm:text-4xl font-black text-white font-orbitron">INFERNAL TECH STACK</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Skill 1 -->
-                <div class="hell-card p-8 rounded-2xl space-y-4" data-tilt data-tilt-max="8">
-                    <div class="w-12 h-12 rounded-xl bg-red-950 text-red-500 flex items-center justify-center border border-red-600/50 shadow-[0_0_15px_rgba(255,0,0,0.4)]">
-                        <i data-lucide="server" class="w-6 h-6"></i>
+            <!-- Right Interactive Terminal (7 Columns) -->
+            <div class="lg:col-span-7 glass-panel rounded-2xl p-4 flex flex-col font-mono text-xs bg-slate-950/90 border-blue-500/30 min-h-[380px]">
+                <div class="flex items-center justify-between px-3 py-2 bg-slate-900/80 rounded-lg border border-blue-900/50 mb-3">
+                    <div class="flex items-center gap-2">
+                        <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
+                        <span class="w-3 h-3 rounded-full bg-yellow-500/80"></span>
+                        <span class="w-3 h-3 rounded-full bg-green-500/80"></span>
+                        <span class="text-slate-400 font-bold ml-2">root@adly-node:~#</span>
                     </div>
-                    <h3 class="text-xl font-bold text-white font-orbitron">Linux & Systems</h3>
-                    <p class="text-xs text-red-200/60 leading-relaxed">Penyusunan server Linux, eksekusi OpenSSH remote, serta konfigurasi layanan sistem.</p>
-                    <div class="flex flex-wrap gap-2 pt-2">
-                        <span class="px-3 py-1 rounded-md bg-red-950/60 text-[11px] text-red-300 border border-red-900">Debian</span>
-                        <span class="px-3 py-1 rounded-md bg-red-950/60 text-[11px] text-red-300 border border-red-900">Ubuntu Server</span>
-                        <span class="px-3 py-1 rounded-md bg-red-950/60 text-[11px] text-red-300 border border-red-900">OpenSSH</span>
-                        <span class="px-3 py-1 rounded-md bg-red-950/60 text-[11px] text-red-300 border border-red-900">Apache2 & Nginx</span>
-                    </div>
+                    <span class="text-[10px] text-cyan-400">BASH / DOCKER CLI</span>
                 </div>
 
-                <!-- Skill 2 -->
-                <div class="hell-card p-8 rounded-2xl space-y-4" data-tilt data-tilt-max="8">
-                    <div class="w-12 h-12 rounded-xl bg-orange-950 text-orange-500 flex items-center justify-center border border-orange-600/50 shadow-[0_0_15px_rgba(255,107,0,0.4)]">
-                        <i data-lucide="box" class="w-6 h-6"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white font-orbitron">Docker & Containers</h3>
-                    <p class="text-xs text-red-200/60 leading-relaxed">Pengelolaan siklus kontainer Docker, isolasi bridge network, bind mounts, dan named volumes.</p>
-                    <div class="flex flex-wrap gap-2 pt-2">
-                        <span class="px-3 py-1 rounded-md bg-orange-950/60 text-[11px] text-orange-300 border border-orange-900">Docker Engine</span>
-                        <span class="px-3 py-1 rounded-md bg-orange-950/60 text-[11px] text-orange-300 border border-orange-900">Bridge Network</span>
-                        <span class="px-3 py-1 rounded-md bg-orange-950/60 text-[11px] text-orange-300 border border-orange-900">Named Volumes</span>
-                        <span class="px-3 py-1 rounded-md bg-orange-950/60 text-[11px] text-orange-300 border border-orange-900">Bind Mounts</span>
-                    </div>
+                <div id="terminal-body" class="flex-1 p-3 overflow-y-auto space-y-2 text-slate-300">
+                    <p class="text-blue-400">Welcome to Adly Irsyad Hafizh Interactive Network Terminal [v2026.1]</p>
+                    <p class="text-slate-400">Type <span class="text-yellow-400">'help'</span> or click buttons below to execute operations.</p>
+                    <div id="terminal-output" class="space-y-1"></div>
                 </div>
 
-                <!-- Skill 3 -->
-                <div class="hell-card p-8 rounded-2xl space-y-4" data-tilt data-tilt-max="8">
-                    <div class="w-12 h-12 rounded-xl bg-yellow-950 text-yellow-500 flex items-center justify-center border border-yellow-600/50 shadow-[0_0_15px_rgba(255,183,0,0.4)]">
-                        <i data-lucide="network" class="w-6 h-6"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white font-orbitron">Network & Cyber</h3>
-                    <p class="text-xs text-red-200/60 leading-relaxed">Simulasi infrastruktur jaringan Cisco, pengalamatan subnetting IP, serta virtualisasi VirtualBox.</p>
-                    <div class="flex flex-wrap gap-2 pt-2">
-                        <span class="px-3 py-1 rounded-md bg-yellow-950/60 text-[11px] text-yellow-300 border border-yellow-900">Packet Tracer</span>
-                        <span class="px-3 py-1 rounded-md bg-yellow-950/60 text-[11px] text-yellow-300 border border-yellow-900">VirtualBox</span>
-                        <span class="px-3 py-1 rounded-md bg-yellow-950/60 text-[11px] text-yellow-300 border border-yellow-900">Subnetting IP</span>
-                        <span class="px-3 py-1 rounded-md bg-yellow-950/60 text-[11px] text-yellow-300 border border-yellow-900">HTML/CSS Dev</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Infernal Labs / Projects -->
-        <section id="labs" class="space-y-12">
-            <div class="text-center space-y-3">
-                <h2 class="text-xs font-bold uppercase tracking-widest text-red-500 font-orbitron">Executed Protocols</h2>
-                <p class="text-3xl sm:text-4xl font-black text-white font-orbitron">INFERNAL LABS & PROJECTS</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Lab Item 1 -->
-                <div class="hell-card p-6 rounded-2xl space-y-4 flex flex-col justify-between">
-                    <div class="space-y-3">
-                        <div class="flex items-center justify-between">
-                            <span class="px-3 py-1 rounded-full text-[10px] font-bold bg-red-950 text-red-400 border border-red-700">DOCKER LAB</span>
-                            <span class="text-xs font-mono text-red-500">2026</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-white font-orbitron">Multi-Container Nginx Portal</h3>
-                        <p class="text-xs text-red-200/70 leading-relaxed">
-                            Praktikum integrasi 3 kontainer Nginx terisolasi dalam bridge network dengan mount volume terpusat untuk layanan web portal.
-                        </p>
-                    </div>
-                    <div class="pt-4 border-t border-red-900/50 flex justify-between items-center text-xs">
-                        <span class="text-red-400 font-mono">Docker • Nginx • Linux</span>
-                        <a href="#" class="text-orange-400 font-bold hover:underline">Inspect →</a>
-                    </div>
-                </div>
-
-                <!-- Lab Item 2 -->
-                <div class="hell-card p-6 rounded-2xl space-y-4 flex flex-col justify-between">
-                    <div class="space-y-3">
-                        <div class="flex items-center justify-between">
-                            <span class="px-3 py-1 rounded-full text-[10px] font-bold bg-orange-950 text-orange-400 border border-orange-700">NETWORKING</span>
-                            <span class="text-xs font-mono text-orange-500">2026</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-white font-orbitron">Starlink vs Fiber Optic Topology</h3>
-                        <p class="text-xs text-red-200/70 leading-relaxed">
-                            Analisis komparatif dan perancangan infrastruktur jaringan satelit Starlink melawan kabel Fiber Optik untuk wilayah terpencil.
-                        </p>
-                    </div>
-                    <div class="pt-4 border-t border-red-900/50 flex justify-between items-center text-xs">
-                        <span class="text-orange-400 font-mono">Satellite • Fiber • Analysis</span>
-                        <a href="#" class="text-orange-400 font-bold hover:underline">Inspect →</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Form -->
-        <section id="contact" class="space-y-12 pb-20">
-            <div class="text-center space-y-3">
-                <h2 class="text-xs font-bold uppercase tracking-widest text-red-500 font-orbitron">Transmission</h2>
-                <p class="text-3xl sm:text-4xl font-black text-white font-orbitron">SUMMON THE ADMIN</p>
-            </div>
-
-            <div class="max-w-xl mx-auto hell-card p-8 rounded-2xl space-y-6">
-                <form onsubmit="event.preventDefault(); alert('Sinyal telah dikirim ke server!');" class="space-y-4 text-xs font-mono">
-                    <div>
-                        <label class="block text-red-400 mb-1">CALLSIGN / NAMA</label>
-                        <input type="text" placeholder="Masukkan nama..." required class="w-full px-4 py-3 rounded-lg bg-black/80 border border-red-900 text-red-100 focus:outline-none focus:border-red-500">
-                    </div>
-                    <div>
-                        <label class="block text-red-400 mb-1">EMAIL FREQUENCY</label>
-                        <input type="email" placeholder="nama@domain.com" required class="w-full px-4 py-3 rounded-lg bg-black/80 border border-red-900 text-red-100 focus:outline-none focus:border-red-500">
-                    </div>
-                    <div>
-                        <label class="block text-red-400 mb-1">TRANSMISSION MESSAGE</label>
-                        <textarea rows="4" placeholder="Tuliskan pesan..." required class="w-full px-4 py-3 rounded-lg bg-black/80 border border-red-900 text-red-100 focus:outline-none focus:border-red-500"></textarea>
-                    </div>
-                    <button type="submit" class="w-full py-3.5 rounded-lg text-xs font-bold text-white bg-gradient-to-r from-red-700 via-orange-600 to-red-600 hover:brightness-125 transition-all fire-glow font-orbitron tracking-widest uppercase">
-                        TRANSMIT SIGNAL
+                <!-- Quick Terminal Buttons -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-3 border-t border-blue-900/50">
+                    <button onclick="runCommand('whoami')" class="py-2 px-3 rounded bg-blue-900/40 hover:bg-blue-800/60 border border-blue-700/50 text-cyan-300 font-mono transition-all text-left">
+                        > whoami
                     </button>
-                </form>
+                    <button onclick="runCommand('docker ps')" class="py-2 px-3 rounded bg-blue-900/40 hover:bg-blue-800/60 border border-blue-700/50 text-cyan-300 font-mono transition-all text-left">
+                        > docker ps
+                    </button>
+                    <button onclick="runCommand('ifconfig')" class="py-2 px-3 rounded bg-blue-900/40 hover:bg-blue-800/60 border border-blue-700/50 text-cyan-300 font-mono transition-all text-left">
+                        > ifconfig
+                    </button>
+                    <button onclick="runCommand('clear')" class="py-2 px-3 rounded bg-blue-900/40 hover:bg-blue-800/60 border border-blue-700/50 text-red-300 font-mono transition-all text-left">
+                        > clear
+                    </button>
+                </div>
             </div>
+        </section>
+
+        <!-- SECTION 2: UTILITY LANDSCAPE PANELS (SUBNET CALCULATOR & NETWORK RACK) -->
+        <section class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            
+            <!-- Left: Subnet Calculator Tool (6 Columns) -->
+            <div class="lg:col-span-6 glass-panel rounded-2xl p-6 space-y-4">
+                <div class="flex items-center justify-between border-b border-blue-900/50 pb-3">
+                    <h2 class="text-base font-bold text-white flex items-center gap-2 font-mono">
+                        <i data-lucide="calculator" class="w-4 h-4 text-cyan-400"></i>
+                        IPv4 Subnet Calculator Tool
+                    </h2>
+                    <span class="text-[10px] font-mono text-cyan-400 bg-blue-950 px-2 py-1 rounded border border-blue-800">TKJ LAB TOOL</span>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 font-mono text-xs">
+                    <div class="sm:col-span-2 space-y-1">
+                        <label class="text-slate-400">IP Address</label>
+                        <input id="calc-ip" type="text" value="192.168.10.1" class="w-full px-3 py-2 rounded bg-slate-950 border border-blue-800 text-white focus:outline-none focus:border-cyan-400">
+                    </div>
+                    <div class="space-y-1">
+                        <label class="text-slate-400">Prefix (/CIDR)</label>
+                        <input id="calc-cidr" type="number" value="24" min="8" max="30" class="w-full px-3 py-2 rounded bg-slate-950 border border-blue-800 text-white focus:outline-none focus:border-cyan-400">
+                    </div>
+                </div>
+
+                <button onclick="calculateSubnet()" class="w-full py-2.5 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-mono font-bold transition-all">
+                    HITUNG SUBNETWORK
+                </button>
+
+                <div id="calc-result" class="grid grid-cols-2 gap-3 p-3 bg-slate-950/80 rounded-lg border border-blue-900/50 text-xs font-mono">
+                    <div>
+                        <span class="text-slate-500 block text-[10px]">NETMASK</span>
+                        <span id="res-netmask" class="text-cyan-400 font-bold">255.255.255.0</span>
+                    </div>
+                    <div>
+                        <span class="text-slate-500 block text-[10px]">TOTAL HOSTS</span>
+                        <span id="res-hosts" class="text-cyan-400 font-bold">254 Usable Hosts</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Simulated Cisco Switch Rack Status (6 Columns) -->
+            <div class="lg:col-span-6 glass-panel rounded-2xl p-6 space-y-4">
+                <div class="flex items-center justify-between border-b border-blue-900/50 pb-3">
+                    <h2 class="text-base font-bold text-white flex items-center gap-2 font-mono">
+                        <i data-lucide="router" class="w-4 h-4 text-cyan-400"></i>
+                        24-Port Gigabit Switch Monitor
+                    </h2>
+                    <span class="text-[10px] font-mono text-emerald-400 bg-emerald-950/60 px-2 py-1 rounded border border-emerald-800">LINK ACTIVE</span>
+                </div>
+
+                <p class="text-xs text-slate-300">Simulasi port switch aktif pada jaringan lab server sekolah TKJ:</p>
+
+                <!-- Switch Port Grid -->
+                <div class="grid grid-cols-12 gap-2 p-4 bg-slate-950 rounded-xl border border-blue-900/60">
+                    <!-- Generating 24 Switch Ports -->
+                    <script>
+                        for(let i = 1; i <= 24; i++) {
+                            const active = i <= 16;
+                            document.write(`
+                                <div class="flex flex-col items-center gap-1 group cursor-pointer">
+                                    <div class="w-full aspect-square rounded bg-slate-900 border ${active ? 'border-cyan-500/80' : 'border-slate-800'} flex items-center justify-center relative">
+                                        <span class="w-2 h-2 rounded-full ${active ? 'bg-cyan-400 animate-pulse led-blue' : 'bg-slate-700'}"></span>
+                                    </div>
+                                    <span class="text-[9px] font-mono ${active ? 'text-cyan-400' : 'text-slate-600'}">${i}</span>
+                                </div>
+                            `);
+                        }
+                    </script>
+                </div>
+                <div class="flex justify-between items-center text-[10px] font-mono text-slate-400">
+                    <span>PORTS 1-16: ACTIVE VLAN 10 (LAB SERVER)</span>
+                    <span>SPEED: 1 Gbps</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: PROJECTS & PRACTICAL LABS -->
+        <section class="space-y-6">
+            <div class="flex items-center justify-between border-b border-blue-900/50 pb-3">
+                <h2 class="text-lg font-bold text-white font-mono flex items-center gap-2">
+                    <i data-lucide="folder-git-2" class="w-5 h-5 text-cyan-400"></i>
+                    PRAKTIKUM & EXPERIMENTAL LABS
+                </h2>
+                <span class="text-xs font-mono text-blue-400">DOCUMENTED PROJECTS</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Lab 1 -->
+                <div class="glass-panel p-6 rounded-2xl space-y-4 flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-1 rounded bg-blue-950 border border-blue-700 text-cyan-300 text-[10px] font-mono">DOCKER</span>
+                            <span class="text-[10px] font-mono text-slate-400">SEP 2026</span>
+                        </div>
+                        <h3 class="text-base font-bold text-white">Multi-Container Nginx Portal</h3>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            Penyusunan 3 kontainer Nginx terintegrasi dalam bridge network kustom dengan named volumes dan bind mounts portal iframe.
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-blue-900/50 flex justify-between items-center text-xs font-mono">
+                        <span class="text-cyan-400">Nginx • Volume Mount</span>
+                        <a href="#" class="text-blue-400 hover:text-white">Detail →</a>
+                    </div>
+                </div>
+
+                <!-- Lab 2 -->
+                <div class="glass-panel p-6 rounded-2xl space-y-4 flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-1 rounded bg-blue-950 border border-blue-700 text-cyan-300 text-[10px] font-mono">LINUX SERVER</span>
+                            <span class="text-[10px] font-mono text-slate-400">SEP 2026</span>
+                        </div>
+                        <h3 class="text-base font-bold text-white">Debian Server Infrastructure</h3>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            Konfigurasi OpenSSH remote access, IP addressing static, isc-dhcp-server, dan Apache2 Web Server pada environment Debian.
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-blue-900/50 flex justify-between items-center text-xs font-mono">
+                        <span class="text-cyan-400">Debian • SSH • DHCP</span>
+                        <a href="#" class="text-blue-400 hover:text-white">Detail →</a>
+                    </div>
+                </div>
+
+                <!-- Lab 3 -->
+                <div class="glass-panel p-6 rounded-2xl space-y-4 flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-1 rounded bg-blue-950 border border-blue-700 text-cyan-300 text-[10px] font-mono">NETWORKING</span>
+                            <span class="text-[10px] font-mono text-slate-400">SEP 2026</span>
+                        </div>
+                        <h3 class="text-base font-bold text-white">Starlink vs Fiber Optic Study</h3>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            Analisis komparasi topologi dan efisiensi jaringan internet satelit Starlink melawan ketersediaan Fiber Optik daerah pedesaan.
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-blue-900/50 flex justify-between items-center text-xs font-mono">
+                        <span class="text-cyan-400">Satellite • Topology</span>
+                        <a href="#" class="text-blue-400 hover:text-white">Detail →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: CONTACT / CONNECT -->
+        <section id="contact" class="max-w-xl mx-auto glass-panel p-8 rounded-2xl space-y-6">
+            <div class="text-center space-y-2">
+                <h2 class="text-xl font-bold text-white font-mono">INITIATE NETWORK CONNECTION</h2>
+                <p class="text-xs text-slate-400">Kirimkan pesan langsung ke sistem Adly Irsyad Hafizh</p>
+            </div>
+
+            <form onsubmit="event.preventDefault(); alert('Koneksi terhubung! Pesan Anda telah dikirim.');" class="space-y-4 font-mono text-xs">
+                <div>
+                    <label class="block text-slate-400 mb-1">USER_NAME</label>
+                    <input type="text" placeholder="Nama Lengkap" required class="w-full px-4 py-2.5 rounded bg-slate-950 border border-blue-800 text-white focus:outline-none focus:border-cyan-400">
+                </div>
+                <div>
+                    <label class="block text-slate-400 mb-1">EMAIL_ADDRESS</label>
+                    <input type="email" placeholder="nama@domain.com" required class="w-full px-4 py-2.5 rounded bg-slate-950 border border-blue-800 text-white focus:outline-none focus:border-cyan-400">
+                </div>
+                <div>
+                    <label class="block text-slate-400 mb-1">PAYLOAD_MESSAGE</label>
+                    <textarea rows="3" placeholder="Tuliskan pesan..." required class="w-full px-4 py-2.5 rounded bg-slate-950 border border-blue-800 text-white focus:outline-none focus:border-cyan-400"></textarea>
+                </div>
+                <button type="submit" class="w-full py-3 rounded bg-gradient-to-r from-blue-600 to-cyan-500 hover:opacity-90 text-black font-bold font-mono transition-all">
+                    SEND DATA PACKET
+                </button>
+            </form>
         </section>
 
     </main>
 
-    <!-- Footer -->
-    <footer class="border-t border-red-950 py-8 text-center text-xs text-red-600 bg-black/90 font-mono">
-        <p>© 2026 Adly Irsyad Hafizh. Powered by Infernal Engine & Three.js.</p>
+    <footer class="border-t border-blue-900/40 py-6 text-center text-xs font-mono text-slate-500">
+        <p>© 2026 Adly Irsyad Hafizh. Designed for TKJ & Network Engineering Operations.</p>
     </footer>
 
-    <!-- JavaScript & Three.js Hell Fire Canvas -->
+    <!-- Scripts Scripting -->
     <script>
         lucide.createIcons();
 
-        // Three.js Hell Ember & Flame Particles
-        const canvas = document.getElementById('hell-canvas');
+        // Three.js Network Particle Grid Background
+        const canvas = document.getElementById('net-canvas');
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
@@ -361,59 +414,34 @@
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-        // Create Particles
-        const count = 250;
+        const count = 180;
         const positions = new Float32Array(count * 3);
-        const colors = new Float32Array(count * 3);
 
-        const colorPalette = [
-            new THREE.Color(0xff2a2a), // Red
-            new THREE.Color(0xff6b00), // Orange
-            new THREE.Color(0xffb700)  // Gold
-        ];
-
-        for (let i = 0; i < count; i++) {
-            positions[i * 3] = (Math.random() - 0.5) * 12;
-            positions[i * 3 + 1] = (Math.random() - 0.5) * 12;
-            positions[i * 3 + 2] = (Math.random() - 0.5) * 12;
-
-            const chosenColor = colorPalette[Math.floor(Math.random() * colorPalette.length)];
-            colors[i * 3] = chosenColor.r;
-            colors[i * 3 + 1] = chosenColor.g;
-            colors[i * 3 + 2] = chosenColor.b;
+        for (let i = 0; i < count * 3; i++) {
+            positions[i] = (Math.random() - 0.5) * 12;
         }
 
         const geometry = new THREE.BufferGeometry();
         geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-        geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 
         const material = new THREE.PointsMaterial({
-            size: 0.04,
-            vertexColors: true,
+            size: 0.03,
+            color: 0x00f0ff,
             transparent: true,
-            opacity: 0.75
+            opacity: 0.7
         });
 
-        const particleSystem = new THREE.Points(geometry, material);
-        scene.add(particleSystem);
+        const particles = new THREE.Points(geometry, material);
+        scene.add(particles);
 
-        camera.position.z = 3;
+        camera.position.z = 3.5;
 
-        // Animation Loop (Rising Embers)
         function animate() {
             requestAnimationFrame(animate);
-
-            const pos = geometry.attributes.position.array;
-            for (let i = 1; i < count * 3; i += 3) {
-                pos[i] += 0.005; // Particle naik ke atas seperti api
-                if (pos[i] > 6) pos[i] = -6; // Reset ke bawah saat mencapai atas
-            }
-            geometry.attributes.position.needsUpdate = true;
-
-            particleSystem.rotation.y += 0.001;
+            particles.rotation.y += 0.0008;
+            particles.rotation.x += 0.0004;
             renderer.render(scene, camera);
         }
-
         animate();
 
         window.addEventListener('resize', () => {
@@ -421,6 +449,48 @@
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
         });
+
+        // Interactive Terminal Command Execution
+        function runCommand(cmd) {
+            const out = document.getElementById('terminal-output');
+            let res = '';
+
+            if(cmd === 'whoami') {
+                res = '<p class="text-cyan-300">> Adly Irsyad Hafizh | SMK Taruna Bhakti Depok (XI TKJ 4) | Aspiring Cloud Engineer</p>';
+            } else if(cmd === 'docker ps') {
+                res = `<div class="text-slate-300">
+                    <p>CONTAINER ID   IMAGE          COMMAND                  STATUS          PORTS</p>
+                    <p class="text-emerald-400">a8f9102c118a   nginx:alpine   "/docker-entrypoint…"   Up 4 hours      0.0.0.0:80->80/tcp</p>
+                    <p class="text-emerald-400">b90d221c991e   debian:12      "bash"                   Up 12 hours     0.0.0.0:22->22/tcp</p>
+                </div>`;
+            } else if(cmd === 'ifconfig') {
+                res = `<div class="text-slate-300">
+                    <p><span class="text-yellow-300">eth0:</span> flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt; mtu 1500</p>
+                    <p>      inet <span class="text-cyan-300">192.168.10.100</span> netmask 255.255.255.0 broadcast 192.168.10.255</p>
+                </div>`;
+            } else if(cmd === 'clear') {
+                out.innerHTML = '';
+                return;
+            }
+
+            out.innerHTML += `<div class="mt-2"><span class="text-yellow-400">root@adly-node:~# ${cmd}</span>${res}</div>`;
+            document.getElementById('terminal-body').scrollTop = document.getElementById('terminal-body').scrollHeight;
+        }
+
+        // Subnet Calculator Function
+        function calculateSubnet() {
+            const cidr = parseInt(document.getElementById('calc-cidr').value) || 24;
+            const hosts = Math.pow(2, 32 - cidr) - 2;
+            
+            let mask = [];
+            for(let i = 0; i < 4; i++) {
+                let n = Math.min(Math.max(cidr - i * 8, 0), 8);
+                mask.push(256 - Math.pow(2, 8 - n));
+            }
+            
+            document.getElementById('res-netmask').innerText = mask.join('.');
+            document.getElementById('res-hosts').innerText = `${hosts > 0 ? hosts : 0} Usable Hosts`;
+        }
     </script>
 </body>
 </html>
