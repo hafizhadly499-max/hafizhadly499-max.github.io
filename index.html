@@ -1,463 +1,1902 @@
+```html
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adly Irsyad Hafizh | Cloud Engineer & Networking Student</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- Three.js untuk Background 3D -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <!-- Vanilla Tilt.js untuk Efek Glass 3D -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            blue: '#3b82f6',
-                            cyan: '#06b6d4',
-                            purple: '#8b5cf6',
-                            dark: '#0a0f1d',
-                            card: 'rgba(15, 23, 42, 0.6)'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        body {
-            background-color: #050811;
-            color: #f8fafc;
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            overflow-x: hidden;
-        }
-        .glass-card {
-            background: rgba(15, 23, 42, 0.65);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-        }
-        .glass-nav {
-            background: rgba(5, 8, 17, 0.8);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        .text-gradient {
-            background: linear-gradient(135deg, #60a5fa 0%, #22d3ee 50%, #a78bfa 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .glow-effect {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(90px);
-            z-index: -1;
-            opacity: 0.35;
-        }
-    </style>
+<title>Heavenly | Aftur Azizan</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    color:#29475d;
+    overflow-x:hidden;
+    background:
+        linear-gradient(
+            180deg,
+            #bde8ff 0%,
+            #dff5ff 18%,
+            #f7fcff 42%,
+            #ffffff 65%,
+            #dff4ff 100%
+        );
+}
+
+/* =====================================================
+   SKY BACKGROUND
+===================================================== */
+
+.sky{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    z-index:-10;
+    pointer-events:none;
+}
+
+/* SUN */
+
+.sun{
+    position:absolute;
+    width:420px;
+    height:420px;
+    right:-80px;
+    top:-170px;
+    border-radius:50%;
+
+    background:rgba(255,255,255,.95);
+
+    box-shadow:
+        0 0 40px #fff,
+        0 0 90px rgba(255,255,255,.95),
+        0 0 180px rgba(255,235,170,.8),
+        0 0 300px rgba(255,255,255,.6);
+
+    animation:sunPulse 6s ease-in-out infinite;
+}
+
+@keyframes sunPulse{
+    0%,100%{
+        transform:scale(1);
+        opacity:.9;
+    }
+
+    50%{
+        transform:scale(1.06);
+        opacity:1;
+    }
+}
+
+/* LIGHT RAYS */
+
+.light{
+    position:absolute;
+    width:550px;
+    height:1000px;
+    top:-400px;
+    right:80px;
+
+    background:linear-gradient(
+        180deg,
+        rgba(255,255,255,.35),
+        transparent
+    );
+
+    filter:blur(35px);
+    transform:rotate(25deg);
+    animation:lightMove 8s ease-in-out infinite;
+}
+
+@keyframes lightMove{
+    0%,100%{
+        opacity:.35;
+        transform:rotate(25deg) translateX(0);
+    }
+
+    50%{
+        opacity:.65;
+        transform:rotate(25deg) translateX(-50px);
+    }
+}
+
+/* =====================================================
+   CLOUD SYSTEM
+===================================================== */
+
+.cloud{
+    position:absolute;
+    height:60px;
+    border-radius:100px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.95),
+            rgba(238,249,255,.75)
+        );
+
+    filter:blur(2px);
+
+    box-shadow:
+        0 15px 35px rgba(93,160,195,.15),
+        0 0 30px rgba(255,255,255,.8);
+}
+
+.cloud::before,
+.cloud::after{
+    content:"";
+    position:absolute;
+    border-radius:50%;
+    background:inherit;
+}
+
+.cloud::before{
+    width:100px;
+    height:100px;
+    left:30px;
+    bottom:5px;
+}
+
+.cloud::after{
+    width:140px;
+    height:140px;
+    right:40px;
+    bottom:0;
+}
+
+/* CLOUD 1 */
+
+.c1{
+    width:320px;
+    top:13%;
+    left:-350px;
+    animation:cloudLeft 38s linear infinite;
+}
+
+/* CLOUD 2 */
+
+.c2{
+    width:500px;
+    top:25%;
+    right:-550px;
+    animation:cloudRight 48s linear infinite;
+    transform:scale(.8);
+}
+
+/* CLOUD 3 */
+
+.c3{
+    width:260px;
+    top:39%;
+    left:-300px;
+    animation:cloudLeft 32s linear infinite;
+    animation-delay:8s;
+    transform:scale(.7);
+}
+
+/* CLOUD 4 */
+
+.c4{
+    width:430px;
+    top:54%;
+    right:-500px;
+    animation:cloudRight 43s linear infinite;
+    animation-delay:4s;
+    transform:scale(.9);
+}
+
+/* CLOUD 5 */
+
+.c5{
+    width:350px;
+    top:70%;
+    left:-400px;
+    animation:cloudLeft 50s linear infinite;
+    animation-delay:12s;
+    transform:scale(.8);
+}
+
+/* CLOUD 6 */
+
+.c6{
+    width:550px;
+    top:83%;
+    right:-600px;
+    animation:cloudRight 55s linear infinite;
+    animation-delay:15s;
+    transform:scale(1.1);
+}
+
+@keyframes cloudLeft{
+
+    from{
+        transform:translateX(0) scale(.8);
+    }
+
+    to{
+        transform:translateX(150vw) scale(.8);
+    }
+}
+
+@keyframes cloudRight{
+
+    from{
+        transform:translateX(0) scale(.9);
+    }
+
+    to{
+        transform:translateX(-150vw) scale(.9);
+    }
+}
+
+/* =====================================================
+   MINI CLOUDS
+===================================================== */
+
+.mini-cloud{
+    position:absolute;
+    width:100px;
+    height:25px;
+
+    background:rgba(255,255,255,.6);
+    border-radius:50px;
+
+    filter:blur(3px);
+
+    animation:miniFloat 7s ease-in-out infinite;
+}
+
+.mini-cloud::before{
+    content:"";
+    position:absolute;
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    background:inherit;
+    left:15px;
+    bottom:0;
+}
+
+.mini-cloud::after{
+    content:"";
+    position:absolute;
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    background:inherit;
+    right:10px;
+    bottom:0;
+}
+
+.mc1{
+    top:18%;
+    left:20%;
+}
+
+.mc2{
+    top:48%;
+    left:72%;
+    animation-delay:2s;
+}
+
+.mc3{
+    top:68%;
+    left:28%;
+    animation-delay:4s;
+}
+
+@keyframes miniFloat{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-20px);
+    }
+}
+
+/* =====================================================
+   PARTICLES
+===================================================== */
+
+.particle{
+    position:absolute;
+    width:4px;
+    height:4px;
+
+    border-radius:50%;
+    background:white;
+
+    box-shadow:
+        0 0 8px white,
+        0 0 20px rgba(255,255,255,.8);
+
+    animation:particleFloat 6s ease-in-out infinite;
+}
+
+.p1{left:8%;top:25%;animation-delay:0s}
+.p2{left:18%;top:65%;animation-delay:1s}
+.p3{left:35%;top:18%;animation-delay:2s}
+.p4{left:48%;top:72%;animation-delay:3s}
+.p5{left:60%;top:32%;animation-delay:1.5s}
+.p6{left:72%;top:75%;animation-delay:4s}
+.p7{left:85%;top:22%;animation-delay:2.5s}
+.p8{left:92%;top:58%;animation-delay:5s}
+
+@keyframes particleFloat{
+
+    0%,100%{
+        transform:translateY(0) scale(.7);
+        opacity:.2;
+    }
+
+    50%{
+        transform:translateY(-35px) scale(1.3);
+        opacity:1;
+    }
+}
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+nav{
+    position:fixed;
+
+    top:20px;
+    left:50%;
+    transform:translateX(-50%);
+
+    width:min(1100px,92%);
+
+    padding:14px 25px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    background:rgba(255,255,255,.48);
+
+    backdrop-filter:blur(25px);
+    -webkit-backdrop-filter:blur(25px);
+
+    border:1px solid rgba(255,255,255,.8);
+
+    border-radius:50px;
+
+    box-shadow:
+        0 15px 45px rgba(72,145,180,.12);
+
+    z-index:1000;
+
+    animation:navDrop 1s ease;
+}
+
+@keyframes navDrop{
+
+    from{
+        opacity:0;
+        transform:translate(-50%,-30px);
+    }
+
+    to{
+        opacity:1;
+        transform:translate(-50%,0);
+    }
+}
+
+.logo{
+    font-family:'Cormorant Garamond',serif;
+    font-size:28px;
+    font-weight:700;
+    color:#285477;
+}
+
+.logo span{
+    color:#e0b65e;
+    display:inline-block;
+    animation:spinStar 5s linear infinite;
+}
+
+@keyframes spinStar{
+
+    from{
+        transform:rotate(0deg);
+    }
+
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+nav ul{
+    display:flex;
+    gap:30px;
+    list-style:none;
+}
+
+nav a{
+    color:#3b6078;
+    text-decoration:none;
+    font-size:13px;
+    position:relative;
+}
+
+nav a::after{
+    content:"";
+    position:absolute;
+
+    left:50%;
+    bottom:-7px;
+
+    width:0;
+    height:2px;
+
+    background:#82c6e6;
+
+    transition:.3s;
+    transform:translateX(-50%);
+}
+
+nav a:hover::after{
+    width:100%;
+}
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero{
+    min-height:100vh;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    padding:120px 20px 80px;
+
+    position:relative;
+}
+
+.hero-content{
+    max-width:900px;
+
+    animation:heroReveal 1.5s ease;
+}
+
+@keyframes heroReveal{
+
+    from{
+        opacity:0;
+        transform:translateY(35px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.badge{
+
+    display:inline-flex;
+
+    padding:10px 20px;
+
+    border-radius:40px;
+
+    background:rgba(255,255,255,.55);
+
+    border:1px solid rgba(255,255,255,.9);
+
+    backdrop-filter:blur(20px);
+
+    color:#6595b1;
+
+    font-size:11px;
+
+    letter-spacing:3px;
+
+    margin-bottom:30px;
+
+    box-shadow:0 10px 30px rgba(80,160,200,.1);
+
+    animation:badgeFloat 4s ease-in-out infinite;
+}
+
+.badge::before{
+    content:"✦";
+    color:#e5bd6e;
+    margin-right:8px;
+}
+
+@keyframes badgeFloat{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-7px);
+    }
+}
+
+.hero h1{
+
+    font-family:'Cormorant Garamond',serif;
+
+    font-size:clamp(75px,11vw,145px);
+
+    line-height:.78;
+
+    color:#234d6a;
+
+    letter-spacing:-3px;
+
+    text-shadow:
+        0 10px 35px rgba(70,150,190,.15);
+
+}
+
+.hero h1 span{
+
+    display:block;
+
+    color:#8bc6e4;
+
+    font-style:italic;
+
+    text-shadow:
+        0 0 40px rgba(255,255,255,.8);
+}
+
+.hero p{
+
+    max-width:650px;
+
+    margin:40px auto;
+
+    line-height:1.9;
+
+    color:#668196;
+
+    font-size:14px;
+}
+
+.hero-buttons{
+
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.btn{
+
+    padding:15px 27px;
+
+    border-radius:50px;
+
+    text-decoration:none;
+
+    font-size:12px;
+
+    transition:.4s;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.btn::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:-100%;
+
+    width:70%;
+    height:100%;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.5),
+        transparent
+    );
+
+    transform:skewX(-20deg);
+
+    transition:.7s;
+}
+
+.btn:hover::before{
+    left:130%;
+}
+
+.btn-primary{
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #69b8df,
+            #9bd7ee
+        );
+
+    box-shadow:
+        0 15px 35px rgba(75,160,205,.3);
+}
+
+.btn-secondary{
+
+    color:#52758c;
+
+    background:rgba(255,255,255,.6);
+
+    border:1px solid rgba(255,255,255,.9);
+
+    backdrop-filter:blur(10px);
+}
+
+.btn:hover{
+
+    transform:translateY(-5px) scale(1.02);
+}
+
+/* =====================================================
+   SECTIONS
+===================================================== */
+
+section{
+    padding:120px 7%;
+}
+
+.section-title{
+
+    text-align:center;
+
+    margin-bottom:60px;
+
+}
+
+.section-title small{
+
+    color:#85b8d2;
+
+    letter-spacing:5px;
+
+    font-size:10px;
+}
+
+.section-title h2{
+
+    font-family:'Cormorant Garamond',serif;
+
+    font-size:60px;
+
+    color:#315a73;
+
+    margin-top:8px;
+}
+
+/* =====================================================
+   GLASS
+===================================================== */
+
+.glass{
+
+    background:rgba(255,255,255,.45);
+
+    border:1px solid rgba(255,255,255,.85);
+
+    backdrop-filter:blur(25px);
+
+    -webkit-backdrop-filter:blur(25px);
+
+    border-radius:30px;
+
+    box-shadow:
+        0 25px 80px rgba(79,145,180,.12);
+
+    transition:.45s;
+}
+
+.glass:hover{
+
+    box-shadow:
+        0 35px 100px rgba(79,145,180,.18);
+
+    border-color:rgba(255,255,255,1);
+}
+
+/* =====================================================
+   PROFILE
+===================================================== */
+
+.profile{
+
+    max-width:1100px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:1fr 1.4fr;
+
+    gap:35px;
+}
+
+.profile-card{
+
+    padding:50px 30px;
+
+    text-align:center;
+
+    animation:cardFloat 6s ease-in-out infinite;
+}
+
+@keyframes cardFloat{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-8px);
+    }
+}
+
+.avatar{
+
+    width:165px;
+    height:165px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    padding:7px;
+
+    background:
+        linear-gradient(
+            135deg,
+            white,
+            #8ed2ee,
+            white
+        );
+
+    box-shadow:
+        0 20px 60px rgba(80,170,210,.25),
+        0 0 0 12px rgba(255,255,255,.2);
+}
+
+.avatar div{
+
+    width:100%;
+    height:100%;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    background:
+        radial-gradient(
+            circle at 30% 25%,
+            white,
+            #d8f3ff
+        );
+
+    font-family:'Cormorant Garamond',serif;
+
+    font-size:75px;
+
+    color:#6da9c7;
+}
+
+.profile-card h3{
+
+    margin-top:28px;
+
+    font-family:'Cormorant Garamond',serif;
+
+    font-size:37px;
+
+    color:#315b74;
+}
+
+.profile-card p{
+
+    color:#7a94a5;
+
+    font-size:13px;
+
+    margin-top:5px;
+}
+
+.info{
+
+    padding:45px;
+}
+
+.info h3{
+
+    font-family:'Cormorant Garamond',serif;
+
+    font-size:42px;
+
+    color:#315b74;
+
+    margin-bottom:20px;
+}
+
+.info p{
+
+    line-height:1.9;
+
+    color:#718899;
+
+    font-size:14px;
+}
+
+.info-grid{
+
+    margin-top:30px;
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:15px;
+}
+
+.info-box{
+
+    padding:18px;
+
+    border-radius:18px;
+
+    background:rgba(255,255,255,.45);
+
+    border:1px solid rgba(255,255,255,.7);
+
+    transition:.35s;
+}
+
+.info-box:hover{
+
+    transform:translateY(-5px);
+
+    background:rgba(255,255,255,.7);
+}
+
+.info-box small{
+
+    display:block;
+
+    color:#9ab5c5;
+
+    font-size:9px;
+
+    letter-spacing:2px;
+}
+
+.info-box strong{
+
+    display:block;
+
+    color:#456b82;
+
+    margin-top:6px;
+
+    font-size:13px;
+}
+
+/* =====================================================
+   SKILLS
+===================================================== */
+
+.skills{
+
+    max-width:1000px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:20px;
+}
+
+.skill{
+
+    padding:35px 25px;
+
+    text-align:center;
+
+    transition:.45s;
+}
+
+.skill:hover{
+
+    transform:
+        translateY(-12px)
+        scale(1.02);
+}
+
+.skill-icon{
+
+    width:70px;
+    height:70px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    margin:auto;
+
+    border-radius:22px;
+
+    background:rgba(255,255,255,.65);
+
+    font-size:30px;
+
+    box-shadow:
+        0 15px 35px rgba(80,150,190,.1);
+
+    transition:.5s;
+}
+
+.skill:hover .skill-icon{
+
+    transform:
+        rotate(8deg)
+        scale(1.1);
+
+    box-shadow:
+        0 20px 45px rgba(80,150,190,.2);
+}
+
+.skill h3{
+
+    margin-top:20px;
+
+    color:#446b82;
+
+    font-size:16px;
+}
+
+.skill p{
+
+    margin-top:8px;
+
+    color:#8ba0ae;
+
+    font-size:12px;
+
+    line-height:1.7;
+}
+
+/* =====================================================
+   PROJECTS
+===================================================== */
+
+.projects{
+
+    max-width:1100px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:22px;
+}
+
+.project{
+
+    padding:32px;
+
+    min-height:240px;
+
+    position:relative;
+
+    overflow:hidden;
+
+    transition:.45s;
+}
+
+.project::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:150px;
+    height:150px;
+
+    border-radius:50%;
+
+    background:rgba(180,225,245,.25);
+
+    top:-70px;
+    right:-70px;
+
+    filter:blur(10px);
+
+    transition:.5s;
+}
+
+.project:hover{
+
+    transform:translateY(-12px);
+}
+
+.project:hover::after{
+
+    transform:scale(1.5);
+
+    background:rgba(180,225,245,.4);
+}
+
+.project-number{
+
+    font-family:'Cormorant Garamond',serif;
+
+    font-size:75px;
+
+    color:rgba(115,180,210,.14);
+
+    position:absolute;
+
+    top:0;
+
+    right:20px;
+}
+
+.project h3{
+
+    margin-top:50px;
+
+    font-family:'Cormorant Garamond',serif;
+
+    font-size:32px;
+
+    color:#426c83;
+}
+
+.project p{
+
+    color:#8298a7;
+
+    font-size:12px;
+
+    line-height:1.8;
+
+    margin-top:10px;
+}
+
+/* =====================================================
+   WORDS OF TODAY
+===================================================== */
+
+.today{
+
+    max-width:1000px;
+
+    margin:auto;
+
+    padding:70px 45px;
+
+    text-align:center;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.today::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:350px;
+    height:350px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.9),
+            transparent 70%
+        );
+
+    top:-180px;
+    left:-100px;
+}
+
+.today-label{
+
+    color:#d2a84f;
+
+    font-size:11px;
+
+    letter-spacing:5px;
+}
+
+.today h2{
+
+    font-family:'Cormorant Garamond',serif;
+
+    font-size:55px;
+
+    color:#315a73;
+
+    margin:15px 0 20px;
+}
+
+.today-text{
+
+    max-width:700px;
+
+    margin:auto;
+
+    font-family:'Cormorant Garamond',serif;
+
+    font-size:32px;
+
+    line-height:1.35;
+
+    font-style:italic;
+
+    color:#52758c;
+}
+
+.today-author{
+
+    margin-top:25px;
+
+    color:#91a8b7;
+
+    font-size:11px;
+
+    letter-spacing:2px;
+}
+
+/* =====================================================
+   QUOTE
+===================================================== */
+
+.quote{
+
+    text-align:center;
+
+    max-width:850px;
+
+    margin:auto;
+
+    padding:80px 30px;
+}
+
+.quote-icon{
+
+    font-size:35px;
+
+    color:#e5bd6e;
+
+    animation:starGlow 2s ease-in-out infinite;
+}
+
+@keyframes starGlow{
+
+    0%,100%{
+        transform:scale(1);
+        filter:drop-shadow(0 0 0 transparent);
+    }
+
+    50%{
+        transform:scale(1.25);
+        filter:drop-shadow(0 0 15px #f5d98d);
+    }
+}
+
+.quote p{
+
+    font-family:'Cormorant Garamond',serif;
+
+    font-size:40px;
+
+    line-height:1.3;
+
+    color:#456b80;
+
+    margin:20px 0;
+
+    font-style:italic;
+}
+
+.quote small{
+
+    color:#91a8b7;
+}
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer{
+
+    padding:70px 20px;
+
+    text-align:center;
+
+    color:#8ba5b5;
+
+    font-size:12px;
+}
+
+footer .wings{
+
+    font-size:30px;
+
+    margin-bottom:18px;
+
+    color:#a8d2e7;
+
+    letter-spacing:15px;
+
+    animation:footerFloat 4s ease-in-out infinite;
+}
+
+@keyframes footerFloat{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-8px);
+    }
+}
+
+/* =====================================================
+   SCROLL REVEAL
+===================================================== */
+
+.reveal{
+
+    opacity:0;
+
+    transform:translateY(40px);
+
+    transition:
+        opacity 1s ease,
+        transform 1s ease;
+}
+
+.reveal.active{
+
+    opacity:1;
+
+    transform:translateY(0);
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:800px){
+
+    nav{
+        padding:13px 18px;
+    }
+
+    nav ul{
+        gap:12px;
+    }
+
+    nav a{
+        font-size:10px;
+    }
+
+    .profile{
+        grid-template-columns:1fr;
+    }
+
+    .skills,
+    .projects{
+        grid-template-columns:1fr;
+    }
+
+    .hero h1{
+        font-size:70px;
+    }
+
+    .section-title h2{
+        font-size:48px;
+    }
+
+    .today-text{
+        font-size:27px;
+    }
+
+    .quote p{
+        font-size:30px;
+    }
+}
+
+@media(max-width:500px){
+
+    nav ul{
+        display:none;
+    }
+
+    .hero h1{
+        font-size:55px;
+    }
+
+    .hero p{
+        font-size:13px;
+    }
+
+    .info-grid{
+        grid-template-columns:1fr;
+    }
+
+    .info{
+        padding:30px;
+    }
+
+    .today{
+        padding:55px 25px;
+    }
+
+    .today h2{
+        font-size:43px;
+    }
+}
+</style>
 </head>
-<body class="relative min-h-screen text-slate-200 antialiased selection:bg-cyan-500 selection:text-white">
 
-    <!-- Canvas Background Three.js -->
-    <canvas id="bg-canvas" class="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none"></canvas>
+<body>
 
-    <!-- Glow Orbs -->
-    <div class="glow-effect w-96 h-96 bg-blue-600 top-10 left-10"></div>
-    <div class="glow-effect w-96 h-96 bg-cyan-500 top-1/2 right-10"></div>
-    <div class="glow-effect w-96 h-96 bg-purple-600 bottom-10 left-1/3"></div>
+<!-- =====================================================
+     SKY
+===================================================== -->
 
-    <!-- Header / Navbar -->
-    <header class="fixed top-0 left-0 w-full z-50 glass-nav">
-        <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
-            <a href="#" class="text-xl font-bold tracking-wider text-white flex items-center gap-2">
-                <span class="p-2 rounded-lg bg-blue-600/20 text-cyan-400 border border-cyan-500/30">
-                    <i data-lucide="terminal" class="w-5 h-5"></i>
-                </span>
-                <span>ADLY<span class="text-cyan-400">.</span></span>
-            </a>
+<div class="sky">
 
-            <!-- Desktop Nav -->
-            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
-                <a href="#about" class="hover:text-cyan-400 transition-colors">Tentang</a>
-                <a href="#skills" class="hover:text-cyan-400 transition-colors">Keahlian</a>
-                <a href="#projects" class="hover:text-cyan-400 transition-colors">Proyek & Lab</a>
-                <a href="#education" class="hover:text-cyan-400 transition-colors">Pendidikan</a>
-                <a href="#contact" class="hover:text-cyan-400 transition-colors">Kontak</a>
-            </nav>
+    <div class="sun"></div>
+    <div class="light"></div>
 
-            <a href="#contact" class="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-blue-600 to-cyan-500 hover:opacity-90 transition-all shadow-lg shadow-cyan-500/20">
-                <i data-lucide="send" class="w-4 h-4"></i>
-                <span>Hubungi Saya</span>
-            </a>
+    <!-- BIG CLOUDS -->
 
-            <!-- Mobile Toggle Button -->
-            <button id="menu-btn" class="md:hidden text-slate-300 hover:text-white">
-                <i data-lucide="menu" class="w-6 h-6"></i>
-            </button>
+    <div class="cloud c1"></div>
+    <div class="cloud c2"></div>
+    <div class="cloud c3"></div>
+    <div class="cloud c4"></div>
+    <div class="cloud c5"></div>
+    <div class="cloud c6"></div>
+
+    <!-- SMALL CLOUDS -->
+
+    <div class="mini-cloud mc1"></div>
+    <div class="mini-cloud mc2"></div>
+    <div class="mini-cloud mc3"></div>
+
+    <!-- PARTICLES -->
+
+    <div class="particle p1"></div>
+    <div class="particle p2"></div>
+    <div class="particle p3"></div>
+    <div class="particle p4"></div>
+    <div class="particle p5"></div>
+    <div class="particle p6"></div>
+    <div class="particle p7"></div>
+    <div class="particle p8"></div>
+
+</div>
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav>
+
+    <div class="logo">
+        Aftur<span>✦</span>
+    </div>
+
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#profile">Profile</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#today">Today</a></li>
+    </ul>
+
+</nav>
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <div class="badge">
+            WELCOME TO MY HEAVEN
         </div>
 
-        <!-- Mobile Nav Menu -->
-        <div id="mobile-menu" class="hidden md:hidden glass-card border-t border-slate-800 px-6 py-4 space-y-3">
-            <a href="#about" class="block text-slate-300 hover:text-cyan-400 py-1">Tentang</a>
-            <a href="#skills" class="block text-slate-300 hover:text-cyan-400 py-1">Keahlian</a>
-            <a href="#projects" class="block text-slate-300 hover:text-cyan-400 py-1">Proyek & Lab</a>
-            <a href="#education" class="block text-slate-300 hover:text-cyan-400 py-1">Pendidikan</a>
-            <a href="#contact" class="block text-slate-300 hover:text-cyan-400 py-1">Kontak</a>
+        <h1>
+            Aftur
+            <span>Azizan</span>
+        </h1>
+
+        <p>
+            Somewhere between the clouds and the code,
+            I'm building my own path through technology,
+            one dream, one project, and one line of code at a time.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="#profile" class="btn btn-primary">
+                Explore My World ✦
+            </a>
+
+            <a href="#today" class="btn btn-secondary">
+                Words of Today
+            </a>
+
         </div>
-    </header>
 
-    <main class="pt-28 px-6 max-w-6xl mx-auto space-y-32">
+    </div>
 
-        <!-- Hero Section -->
-        <section id="about" class="min-h-[80vh] flex flex-col md:flex-row items-center justify-between gap-12 pt-10">
-            <div class="space-y-6 md:w-3/5">
-                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-card border-emerald-500/30 text-emerald-400 text-xs font-semibold">
-                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                    Siswa SMK TKJ & Aspiring Cloud Engineer
-                </div>
+</section>
 
-                <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight text-white">
-                    Halo, Saya <br>
-                    <span class="text-gradient">Adly Irsyad Hafizh</span>
-                </h1>
+<!-- =====================================================
+     PROFILE
+===================================================== -->
 
-                <p class="text-base md:text-lg text-slate-400 leading-relaxed">
-                    Siswa SMK Taruna Bhakti Depok jurusan Teknik Komputer dan Jaringan (TKJ). Berfokus pada pengelolaan jaringan komputer, administrasi server Linux, containerization dengan Docker, serta berambisi menjadi profesional <span class="text-cyan-400 font-medium">Cloud Engineer</span>.
-                </p>
+<section id="profile">
 
-                <div class="flex flex-wrap gap-4 pt-2">
-                    <a href="#projects" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-medium text-white bg-gradient-to-r from-blue-600 to-cyan-500 hover:scale-[1.02] transition-transform shadow-lg shadow-cyan-500/25">
-                        <i data-lucide="folder-git-2" class="w-5 h-5"></i>
-                        Lihat Portofolio
-                    </a>
-                    <a href="#contact" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-medium text-slate-200 glass-card hover:bg-slate-800/60 hover:scale-[1.02] transition-all">
-                        <i data-lucide="mail" class="w-5 h-5"></i>
-                        Kontak Saya
-                    </a>
-                </div>
+    <div class="section-title reveal">
 
-                <!-- Fast Info -->
-                <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-6 border-t border-slate-800">
-                    <div>
-                        <p class="text-xs text-slate-500">Lokasi</p>
-                        <p class="text-sm font-medium text-slate-300">Depok, Indonesia</p>
-                    </div>
-                    <div>
-                        <p class="text-xs text-slate-500">Pendidikan</p>
-                        <p class="text-sm font-medium text-slate-300">SMK Taruna Bhakti</p>
-                    </div>
-                    <div>
-                        <p class="text-xs text-slate-500">Fokus</p>
-                        <p class="text-sm font-medium text-cyan-400">Cloud & Networking</p>
-                    </div>
-                </div>
+        <small>ABOUT ME</small>
+
+        <h2>Heavenly Profile</h2>
+
+    </div>
+
+    <div class="profile">
+
+        <div class="glass profile-card reveal">
+
+            <div class="avatar">
+                <div>A</div>
             </div>
 
-            <!-- Profile Avatar / Card -->
-            <div class="md:w-2/5 w-full flex justify-center">
-                <div class="tilt-card glass-card rounded-2xl p-6 w-full max-w-sm relative group" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
-                    <div class="aspect-square rounded-xl bg-gradient-to-tr from-slate-900 via-blue-950 to-slate-900 flex flex-col items-center justify-center p-6 border border-slate-800 text-center relative overflow-hidden">
-                        <div class="w-28 h-28 rounded-full bg-gradient-to-tr from-cyan-500 to-blue-600 p-1 mb-4 shadow-xl shadow-cyan-500/30">
-                            <div class="w-full h-full rounded-full bg-slate-950 flex items-center justify-center text-4xl font-extrabold text-cyan-400">
-                                AIH
-                            </div>
-                        </div>
-                        <h3 class="text-xl font-bold text-white">Adly Irsyad Hafizh</h3>
-                        <p class="text-xs text-cyan-400 font-mono mt-1">@ cloud_networking_student</p>
+            <h3>
+                Muhammad Aftur Azizan
+            </h3>
 
-                        <div class="mt-6 flex gap-3 text-slate-400">
-                            <span class="p-2 rounded-lg bg-slate-900/80 border border-slate-800 hover:text-cyan-400 transition-colors cursor-pointer"><i data-lucide="github" class="w-5 h-5"></i></span>
-                            <span class="p-2 rounded-lg bg-slate-900/80 border border-slate-800 hover:text-cyan-400 transition-colors cursor-pointer"><i data-lucide="linkedin" class="w-5 h-5"></i></span>
-                            <span class="p-2 rounded-lg bg-slate-900/80 border border-slate-800 hover:text-cyan-400 transition-colors cursor-pointer"><i data-lucide="instagram" class="w-5 h-5"></i></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+            <p>
+                Network & Cloud Enthusiast
+            </p>
 
-        <!-- Skills Section -->
-        <section id="skills" class="space-y-10">
-            <div class="text-center space-y-3">
-                <h2 class="text-xs font-bold uppercase tracking-widest text-cyan-400">Kemampuan Teknikal</h2>
-                <p class="text-3xl font-bold text-white">Tech Stack & Tooling</p>
-            </div>
+        </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Linux & Server -->
-                <div class="tilt-card glass-card p-6 rounded-2xl space-y-4" data-tilt data-tilt-max="5">
-                    <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center border border-cyan-500/20">
-                        <i data-lucide="server" class="w-6 h-6"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-white">Linux & Server Admin</h3>
-                    <p class="text-xs text-slate-400">Pengelolaan sistem operasi server, SSH remote, serta administrasi layanan jaringan.</p>
-                    <div class="flex flex-wrap gap-2 pt-2">
-                        <span class="px-3 py-1 rounded-lg bg-slate-800/80 text-xs text-cyan-300 border border-slate-700">Debian</span>
-                        <span class="px-3 py-1 rounded-lg bg-slate-800/80 text-xs text-cyan-300 border border-slate-700">Ubuntu Server</span>
-                        <span class="px-3 py-1 rounded-lg bg-slate-800/80 text-xs text-cyan-300 border border-slate-700">OpenSSH</span>
-                        <span class="px-3 py-1 rounded-lg bg-slate-800/80 text-xs text-cyan-300 border border-slate-700">Apache2 & Nginx</span>
-                        <span class="px-3 py-1 rounded-lg bg-slate-800/80 text-xs text-cyan-300 border border-slate-700">isc-dhcp-server</span>
-                    </div>
+        <div class="glass info reveal">
+
+            <h3>
+                About My Journey
+            </h3>
+
+            <p>
+                Saya adalah seorang siswa yang tertarik dengan dunia
+                teknologi, networking, server, dan cloud computing.
+                Bagi saya, belajar teknologi bukan cuma tentang
+                menghafal command, tapi tentang memahami bagaimana
+                semuanya bekerja dan menciptakan sesuatu dari nol.
+            </p>
+
+            <div class="info-grid">
+
+                <div class="info-box">
+                    <small>NAME</small>
+                    <strong>Muhammad Aftur Azizan</strong>
                 </div>
 
-                <!-- DevOps & Container -->
-                <div class="tilt-card glass-card p-6 rounded-2xl space-y-4" data-tilt data-tilt-max="5">
-                    <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center border border-blue-500/20">
-                        <i data-lucide="box" class="w-6 h-6"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-white">Containerization & Cloud</h3>
-                    <p class="text-xs text-slate-400">Praktik penataan kontainer modern, volume data, dan manajemen arsitektur terisolasi.</p>
-                    <div class="flex flex-wrap gap-2 pt-2">
-                        <span class="px-3 py-1 rounded-lg bg-slate-800/80 text-xs text-blue-300 border border-slate-700">Docker Lifecycle</span>
-                        <span class="px-3 py-1 rounded-lg bg-slate-800/80 text-xs text-blue-300 border border-slate-700">Bridge Networks</span>
-                        <span class="px-3 py-1 rounded-lg bg-slate-800/80 text-xs text-blue-300 border border-slate-700">Named Volumes</span>
-                        <span class="px-3 py-1 rounded-lg bg-slate-800/80 text-xs text-blue-300 border border-slate-700">Bind Mounts</span>
-                    </div>
+                <div class="info-box">
+                    <small>CLASS</small>
+                    <strong>XI TKJ 4</strong>
                 </div>
 
-                <!-- Networking & Virtualization -->
-                <div class="tilt-card glass-card p-6 rounded-2xl space-y-4" data-tilt data-tilt-max="5">
-                    <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center border border-purple-500/20">
-                        <i data-lucide="network" class="w-6 h-6"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-white">Networking & Virtualization</h3>
-                    <p class="text-xs text-slate-400">Perancangan skema alamat IP, simulasi topologi jaringan, serta lingkungan virtual.</p>
-                    <div class="flex flex-wrap gap-2 pt-2">
-                        <span class="px-3 py-1 rounded-lg bg-slate-800/80 text-xs text-purple-300 border border-slate-700">Cisco Packet Tracer</span>
-                        <span class="px-3 py-1 rounded-lg bg-slate-800/80 text-xs text-purple-300 border border-slate-700">VirtualBox</span>
-                        <span class="px-3 py-1 rounded-lg bg-slate-800/80 text-xs text-purple-300 border border-slate-700">IP Addressing & Subnetting</span>
-                        <span class="px-3 py-1 rounded-lg bg-slate-800/80 text-xs text-purple-300 border border-slate-700">Web Dev (HTML/CSS/JS)</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Projects & Labs Section -->
-        <section id="projects" class="space-y-10">
-            <div class="text-center space-y-3">
-                <h2 class="text-xs font-bold uppercase tracking-widest text-cyan-400">Praktikum & Karya</h2>
-                <p class="text-3xl font-bold text-white">Proyek Eksperimen & Lab</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Project Card 1 -->
-                <div class="tilt-card glass-card rounded-2xl p-6 space-y-4 flex flex-col justify-between" data-tilt data-tilt-max="3">
-                    <div class="space-y-3">
-                        <div class="flex items-center justify-between">
-                            <span class="px-3 py-1 rounded-full text-xs font-semibold bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">Docker Lab</span>
-                            <span class="text-xs text-slate-500">2026</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-white">Multi-Container Docker Portal Architecture</h3>
-                        <p class="text-sm text-slate-400 leading-relaxed">
-                            Pengembangan dan integrasi 3 kontainer Nginx terisolasi memanfaatkan kustomisasi bridge network, bind mounts, serta named volumes untuk menampilkan portal web interaktif berbasis iframe.
-                        </p>
-                    </div>
-                    <div class="pt-4 border-t border-slate-800/80 flex items-center justify-between">
-                        <span class="text-xs font-mono text-slate-400">Nginx • Docker • Linux</span>
-                        <a href="#" class="text-xs text-cyan-400 hover:underline inline-flex items-center gap-1">Detail Lab <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i></a>
-                    </div>
+                <div class="info-box">
+                    <small>SCHOOL</small>
+                    <strong>SMK Taruna Bhakti</strong>
                 </div>
 
-                <!-- Project Card 2 -->
-                <div class="tilt-card glass-card rounded-2xl p-6 space-y-4 flex flex-col justify-between" data-tilt data-tilt-max="3">
-                    <div class="space-y-3">
-                        <div class="flex items-center justify-between">
-                            <span class="px-3 py-1 rounded-full text-xs font-semibold bg-purple-500/10 text-purple-400 border border-purple-500/30">Network Study</span>
-                            <span class="text-xs text-slate-500">2026</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-white">Konektivitas Satelit Starlink vs Fiber Optic</h3>
-                        <p class="text-sm text-slate-400 leading-relaxed">
-                            Analisis dan sajian teks diskusi komparatif mengenai efisiensi implementasi konektivitas internet berbasis Starlink dan jaringan Fiber Optik untuk daerah terpencil.
-                        </p>
-                    </div>
-                    <div class="pt-4 border-t border-slate-800/80 flex items-center justify-between">
-                        <span class="text-xs font-mono text-slate-400">Networking • Topology Study</span>
-                        <a href="#" class="text-xs text-cyan-400 hover:underline inline-flex items-center gap-1">Detail Dokumen <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i></a>
-                    </div>
+                <div class="info-box">
+                    <small>DREAM</small>
+                    <strong>Cloud Engineer</strong>
                 </div>
 
-                <!-- Project Card 3 -->
-                <div class="tilt-card glass-card rounded-2xl p-6 space-y-4 flex flex-col justify-between" data-tilt data-tilt-max="3">
-                    <div class="space-y-3">
-                        <div class="flex items-center justify-between">
-                            <span class="px-3 py-1 rounded-full text-xs font-semibold bg-blue-500/10 text-blue-400 border border-blue-500/30">Server Admin</span>
-                            <span class="text-xs text-slate-500">2026</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-white">Pengkonfigurasian Debian Server Environment</h3>
-                        <p class="text-sm text-slate-400 leading-relaxed">
-                            Konfigurasi menyeluruh infrastruktur Debian Server mencakup pengalamatan IP static, OpenSSH remote access, isc-dhcp-server, serta web server Apache2 pada VirtualBox.
-                        </p>
-                    </div>
-                    <div class="pt-4 border-t border-slate-800/80 flex items-center justify-between">
-                        <span class="text-xs font-mono text-slate-400">Debian • VirtualBox • SSH</span>
-                        <a href="#" class="text-xs text-cyan-400 hover:underline inline-flex items-center gap-1">Detail Dokumentasi <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i></a>
-                    </div>
-                </div>
-
-                <!-- Project Card 4 -->
-                <div class="tilt-card glass-card rounded-2xl p-6 space-y-4 flex flex-col justify-between" data-tilt data-tilt-max="3">
-                    <div class="space-y-3">
-                        <div class="flex items-center justify-between">
-                            <span class="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">Frontend Design</span>
-                            <span class="text-xs text-slate-500">2026</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-white">3D Animated Glassmorphic Web Experience</h3>
-                        <p class="text-sm text-slate-400 leading-relaxed">
-                            Pembuatan portofolio interaktif menggunakan HTML, Tailwind CSS, JavaScript, Three.js particle background, serta komponen futuristik glassmorphism.
-                        </p>
-                    </div>
-                    <div class="pt-4 border-t border-slate-800/80 flex items-center justify-between">
-                        <span class="text-xs font-mono text-slate-400">HTML • Tailwind • Three.js</span>
-                        <a href="#" class="text-xs text-cyan-400 hover:underline inline-flex items-center gap-1">Live Web <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i></a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Education Section -->
-        <section id="education" class="space-y-10">
-            <div class="text-center space-y-3">
-                <h2 class="text-xs font-bold uppercase tracking-widest text-cyan-400">Latar Belakang</h2>
-                <p class="text-3xl font-bold text-white">Pendidikan & Pengalaman</p>
             </div>
 
-            <div class="max-w-3xl mx-auto space-y-6">
-                <!-- Timeline Item -->
-                <div class="glass-card p-6 rounded-2xl flex flex-col sm:flex-row gap-6 items-start">
-                    <div class="p-3 rounded-xl bg-blue-600/20 text-cyan-400 border border-cyan-500/30">
-                        <i data-lucide="graduation-cap" class="w-8 h-8"></i>
-                    </div>
-                    <div class="space-y-2">
-                        <div class="flex items-center justify-between">
-                            <h3 class="text-lg font-bold text-white">SMK Taruna Bhakti Depok</h3>
-                            <span class="text-xs font-mono text-cyan-400">Kelas XI TKJ 4</span>
-                        </div>
-                        <p class="text-sm text-slate-300 font-medium">Teknik Komputer dan Jaringan (TJKT / TKJ)</p>
-                        <p class="text-xs text-slate-400 leading-relaxed">
-                            Mempelajari dasar dan penerapan praktis infrastruktur jaringan, administrasi server Linux, subnetting, perangkat keras komputer, hingga konsep cloud computing.
-                        </p>
-                    </div>
-                </div>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+     SKILLS
+===================================================== -->
+
+<section id="skills">
+
+    <div class="section-title reveal">
+
+        <small>WHAT I LEARN</small>
+
+        <h2>My Skills</h2>
+
+    </div>
+
+    <div class="skills">
+
+        <div class="glass skill reveal">
+
+            <div class="skill-icon">
+                ☁
             </div>
-        </section>
 
-        <!-- Contact Section -->
-        <section id="contact" class="space-y-10 pb-20">
-            <div class="text-center space-y-3">
-                <h2 class="text-xs font-bold uppercase tracking-widest text-cyan-400">Mari Terhubung</h2>
-                <p class="text-3xl font-bold text-white">Hubungi Saya</p>
+            <h3>
+                Cloud Computing
+            </h3>
+
+            <p>
+                Exploring cloud infrastructure,
+                deployment and modern technologies.
+            </p>
+
+        </div>
+
+        <div class="glass skill reveal">
+
+            <div class="skill-icon">
+                ⌘
             </div>
 
-            <div class="max-w-xl mx-auto glass-card p-8 rounded-2xl space-y-6">
-                <form onsubmit="event.preventDefault(); alert('Pesan berhasil terkirim!');" class="space-y-4">
-                    <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-1">Nama Lengkap</label>
-                        <input type="text" placeholder="Nama Anda" required class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-slate-800 text-slate-200 text-sm focus:outline-none focus:border-cyan-500">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-1">Email</label>
-                        <input type="email" placeholder="email@contoh.com" required class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-slate-800 text-slate-200 text-sm focus:outline-none focus:border-cyan-500">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-1">Pesan</label>
-                        <textarea rows="4" placeholder="Tuliskan pesan Anda di sini..." required class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-slate-800 text-slate-200 text-sm focus:outline-none focus:border-cyan-500"></textarea>
-                    </div>
-                    <button type="submit" class="w-full py-3 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-blue-600 to-cyan-500 hover:opacity-90 transition-all shadow-lg shadow-cyan-500/20 flex items-center justify-center gap-2">
-                        <i data-lucide="send" class="w-4 h-4"></i>
-                        <span>Kirim Pesan</span>
-                    </button>
-                </form>
+            <h3>
+                Networking
+            </h3>
+
+            <p>
+                Cisco, MikroTik, VLAN,
+                routing and network configuration.
+            </p>
+
+        </div>
+
+        <div class="glass skill reveal">
+
+            <div class="skill-icon">
+                ◈
             </div>
-        </section>
 
-    </main>
+            <h3>
+                Linux & Server
+            </h3>
 
-    <!-- Footer -->
-    <footer class="border-t border-slate-900 py-8 text-center text-xs text-slate-500 glass-nav">
-        <p>© 2026 Adly Irsyad Hafizh. Designed with Three.js & Tailwind CSS.</p>
-    </footer>
+            <p>
+                Exploring Linux administration,
+                services and server infrastructure.
+            </p>
 
-    <!-- Scripts Scripting -->
-    <script>
-        // Initialize Lucide Icons
-        lucide.createIcons();
+        </div>
 
-        // Mobile Menu Toggle
-        const menuBtn = document.getElementById('menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+    </div>
 
-        // Background Particle System (Three.js)
-        const canvas = document.getElementById('bg-canvas');
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
+</section>
 
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+<!-- =====================================================
+     PROJECTS
+===================================================== -->
 
-        // Create Particles
-        const particlesCount = 150;
-        const posArray = new Float32Array(particlesCount * 3);
+<section id="projects">
 
-        for (let i = 0; i < particlesCount * 3; i++) {
-            posArray[i] = (Math.random() - 0.5) * 10;
+    <div class="section-title reveal">
+
+        <small>MY CREATIONS</small>
+
+        <h2>Projects</h2>
+
+    </div>
+
+    <div class="projects">
+
+        <div class="glass project reveal">
+
+            <div class="project-number">
+                01
+            </div>
+
+            <h3>
+                Docker Web
+            </h3>
+
+            <p>
+                Multi-container website menggunakan
+                Docker dan Nginx dengan network,
+                volume dan bind mount.
+            </p>
+
+        </div>
+
+        <div class="glass project reveal">
+
+            <div class="project-number">
+                02
+            </div>
+
+            <h3>
+                Network Lab
+            </h3>
+
+            <p>
+                Simulasi jaringan menggunakan Cisco
+                dan MikroTik untuk memahami
+                routing, VLAN dan networking.
+            </p>
+
+        </div>
+
+        <div class="glass project reveal">
+
+            <div class="project-number">
+                03
+            </div>
+
+            <h3>
+                Cloud Journey
+            </h3>
+
+            <p>
+                Mempelajari konsep cloud computing
+                dan infrastructure sebagai langkah
+                menuju Cloud Engineer.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+     WORDS OF TODAY
+===================================================== -->
+
+<section id="today">
+
+    <div class="glass today reveal">
+
+        <div class="today-label">
+            ✦ WORDS OF TODAY ✦
+        </div>
+
+        <h2>
+            Today's Energy
+        </h2>
+
+        <div class="today-text">
+
+            "Jangan takut punya mimpi yang
+            kelihatan terlalu tinggi.
+            Namanya juga mimpi —
+            memang tempatnya di atas awan."
+
+        </div>
+
+        <div class="today-author">
+            — AFTUR AZIZAN
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+     FINAL QUOTE
+===================================================== -->
+
+<section>
+
+    <div class="glass quote reveal">
+
+        <div class="quote-icon">
+            ✦
+        </div>
+
+        <p>
+            "The sky is not the limit.
+            It's only the beginning."
+        </p>
+
+        <small>
+            — Aftur Azizan
+        </small>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <div class="wings">
+        ☁ ✦ ☁
+    </div>
+
+    <p>
+        © 2026 Muhammad Aftur Azizan
+    </p>
+
+    <p>
+        Made with passion, dreams & a little bit of heaven.
+    </p>
+
+</footer>
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+/* SCROLL REVEAL */
+
+const reveals =
+document.querySelectorAll(".reveal");
+
+const observer =
+new IntersectionObserver(
+(entries) => {
+
+    entries.forEach(entry => {
+
+        if(entry.isIntersecting){
+
+            entry.target.classList.add("active");
+
         }
 
-        const particlesGeometry = new THREE.BufferGeometry();
-        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+    });
 
-        const particlesMaterial = new THREE.PointsMaterial({
-            size: 0.025,
-            color: 0x22d3ee,
-            transparent: true,
-            opacity: 0.6
-        });
+},
+{
+    threshold:0.12
+});
 
-        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
-        scene.add(particlesMesh);
+reveals.forEach(
+element => observer.observe(element)
+);
 
-        camera.position.z = 3;
 
-        // Mouse Parallax Effect
-        let mouseX = 0;
-        let mouseY = 0;
+/* MOUSE PARALLAX */
 
-        window.addEventListener('mousemove', (e) => {
-            mouseX = (e.clientX / window.innerWidth) - 0.5;
-            mouseY = (e.clientY / window.innerHeight) - 0.5;
-        });
+document.addEventListener(
+"mousemove",
+(e) => {
 
-        // Animation Loop
-        const animate = () => {
-            requestAnimationFrame(animate);
+    const x =
+        (e.clientX / window.innerWidth - .5);
 
-            particlesMesh.rotation.y += 0.001;
-            particlesMesh.rotation.x += 0.0005;
+    const y =
+        (e.clientY / window.innerHeight - .5);
 
-            particlesMesh.position.x += (mouseX * 0.5 - particlesMesh.position.x) * 0.05;
-            particlesMesh.position.y += (-mouseY * 0.5 - particlesMesh.position.y) * 0.05;
+    const clouds =
+        document.querySelectorAll(".mini-cloud");
 
-            renderer.render(scene, camera);
-        };
+    clouds.forEach((cloud,index) => {
 
-        animate();
+        const strength =
+            (index + 1) * 12;
 
-        // Window Resize Handler
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        });
-    </script>
+        cloud.style.transform =
+            `translate(${x * strength}px,
+                        ${y * strength}px)`;
+
+    });
+
+    const light =
+        document.querySelector(".light");
+
+    light.style.transform =
+        `rotate(25deg)
+         translate(${x * 30}px,
+                   ${y * 20}px)`;
+
+});
+
+
+/* RANDOM PARTICLE MOVEMENT */
+
+const particles =
+document.querySelectorAll(".particle");
+
+particles.forEach((particle,index) => {
+
+    particle.style.animationDuration =
+        `${5 + Math.random() * 5}s`;
+
+    particle.style.animationDelay =
+        `${Math.random() * 5}s`;
+
+});
+
+
+/* GENTLE HERO PARALLAX */
+
+const hero =
+document.querySelector(".hero-content");
+
+window.addEventListener(
+"scroll",
+() => {
+
+    const scroll =
+        window.scrollY;
+
+    if(scroll < window.innerHeight){
+
+        hero.style.transform =
+            `translateY(${scroll * .12}px)`;
+
+        hero.style.opacity =
+            1 - (scroll / 900);
+
+    }
+
+});
+
+
+</script>
+
 </body>
 </html>
+```
